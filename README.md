@@ -1,6 +1,12 @@
 # Terminal
 This is an assortment of quick references to speed up your Terminal skills!
 - [Basics](#basics)
+- [Apt](#apt)
+  - [Apt Install](#apt-install)
+  - [Apt Update](#apt-update)
+  - [Apt Upgrade](#apt-upgrade)
+  - [Apt Remove](#apt-remove)
+  - [Apt Lock Error](#apt-lock-error)
 - [Listing and Navigating](#listing-and-navigating)
 - [Users](#users)
 - [Groups](#groups)
@@ -88,7 +94,7 @@ This is an assortment of quick references to speed up your Terminal skills!
     - [Remove Docker Image](#remove-docker-image)
     - [Pushing Images](#pushing-images)
 
-## Basics
+# Basics
 ***
 [(Back to Top)](#terminal)
 ```
@@ -105,6 +111,47 @@ echo                (output to terminal)
 env                 (See environment variables)
 hostname            (See your hostname)
 ```
+
+# Apt
+***
+[(Back to Top)](#terminal)
+Apt (Or Aptitude) is the package manager for Ubuntu to manage packages and remove them.
+
+### Apt Install
+You need super user permissions, or `sudo` before the command.
+To install packages, let's use an example such as ruby which should have a list of items.
+```
+sudo apt-get install rub<TAB>  ; Press the tab key to see a list, type :q to exit the list
+sudo apt-get install ruby2.3
+```
+
+### Apt Update
+This updates the sources list located in `/etc/apt/sources.list.d/` which is where the OS knows where to download files from. You will do this time to time if it's been a while.
+
+```
+sudo apt-get update
+```
+
+### Apt Upgrade
+This will upgrade packages that have newer versions.
+
+```
+sudo apt-get upgrade
+```
+
+### Apt Remove
+Removing a package is quite simple. However, this will not remove configuration files, so if you were to re-install it they would be preserved. You would use `apt-get purge ruby2.3*` to purge all files.
+```
+sudo apt-get remove ruby2.3
+```
+
+### Apt Lock Error
+If you get an error such as `Unable to lock the administration directory (/var/lib/dpkg/) is another process`, follow these steps:
+- Make sure you are not logged in as another user running apt
+- Delete the lock and archive file files:
+  - `sudo rm /var/lib/apt/lists/lock`
+  - `sudo rm /var/cache/apt/archives/lock`
+- If nothing works, attempt rebooting the server
 
 # Listing and Navigating
 ***
