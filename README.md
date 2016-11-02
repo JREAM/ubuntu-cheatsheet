@@ -151,6 +151,7 @@ If you get an error such as `Unable to lock the administration directory (/var/l
 - Delete the lock and archive file files:
   - `sudo rm /var/lib/apt/lists/lock`
   - `sudo rm /var/cache/apt/archives/lock`
+  - `sudo dpkg --configure -a`
 - If nothing works, attempt rebooting the server
 
 # Listing and Navigating
