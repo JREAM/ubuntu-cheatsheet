@@ -22,6 +22,8 @@ This is an assortment of quick references to speed up your Terminal skills!
     - [System Processes](#system-processes)
     - [IP Address](#ip-address)
     - [GUI Processes](#gui-processes)
+- [Kernal](#kernal)
+    - [Remove Old Kernals](#remove-old-kernals)
 - [List all Keybindings](#list-all-keybindings)
     - [See Keypressed](#see-keypressed)
 - [OS Shutdown](#os-shutdown)
@@ -348,6 +350,31 @@ xev
 ; Or for a lot of details:
 
 xev | grep KeyPress
+```
+
+# Kernal
+***
+[(Back to Top)](#terminal)
+
+The Kernal is the lowest level item that ties everything together from hardware to software.
+Without a kernal you cannot do anything on linux.
+
+### Remove Old Kernals
+
+See What version you are currently using 
+```
+sudo uname -a
+```
+
+See all the Kernals on the OS
+```
+sudo dpkg --get-selections | grep linux  
+```
+
+The BYOBU is quite nice
+```
+sudo apt install byobu 
+sudo purge-old-kernels
 ```
 
 # OS Shutdown
