@@ -14,6 +14,7 @@ This is an assortment of quick references to speed up your Terminal skills!
     - [Easy Permissions](#easy-permissions)
     - [Octal Permissions](#octal-permissions)
     - [Octal Examples](#octal-examples)
+    - [Preserve Group Permissions](#preserve-group-permissions)
 - [OS Details](#os-details)
     - [Operating System](#operating-system)g
     - [CPU Info](#cpu-info)
@@ -246,6 +247,22 @@ chown -R user:group files_or_folder
 chgrp -R group files_or_folder
 chmod -R og+rw files_or_folder
 ```
+
+### Preserve Group Permissions
+A fantastic way to structure your users is within groups. A common example would be your `www-data` group.
+If I have a user `jesse`, I can add him with `sudo usermod -aG www-data jesse`. 
+
+After adding any users I would like, I want to have a folder where all the members of the `www-data` group
+can read/write a folder. If they are using git, I also want the permissions to stay the same, meaning if they
+pull the permissions will not change. 
+
+To accomplish this, here is an example:
+```
+sudo chown -R deploy:www-data /var/www
+sudo chmod -R g+rws /var/www
+```
+
+The `g+s` sets the file(s)/folder(s) a gid (`setgid`) so that new files will inherit the original group!
 
 ### Octal Permissions
 You may have seen this a lot, you can use octal or decimal (begins with a 0) to do the same thing.
