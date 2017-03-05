@@ -7,6 +7,7 @@ This is an assortment of quick references to speed up your Terminal skills!
   - [Apt Upgrade](#apt-upgrade)
   - [Apt Remove](#apt-remove)
   - [Apt Lock Error](#apt-lock-error)
+- [Installing GUI's](#installing-guis)
 - [Listing and Navigating](#listing-and-navigating)
 - [Users](#users)
 - [Groups](#groups)
@@ -162,6 +163,47 @@ If you get an error such as `Unable to lock the administration directory (/var/l
   - `sudo rm /var/cache/apt/archives/lock`
   - `sudo dpkg --configure -a`
 - If nothing works, attempt rebooting the server
+
+# Installing GUI's
+Linux has a lot of GUI's and you are not limited to what you get. I'll list a few popular ones with the installation instructions in Ubuntu. You can have as many GUI options as you like, just change the default at the login screen.
+
+> Tip: After you install, logout and in the login menu or the top right you can select what GUI you want to login with. Whenever you install a new GUI you can select a Display Manager, I recommend using `lightdm`. 
+
+- [Unity - From Ubuntu](https://unity.ubuntu.com/)
+  - Installed in Ubuntu by Default (`ubuntu-desktop`)
+- [XUbuntu](https://xubuntu.org/screenshots/)
+  - Install:
+    - `sudo apt-get install xubuntu-desktop`
+  - Remove: `sudo apt-get remove xubuntu-desktop`
+- [Cinnamon - From Linux Mint](https://www.linuxmint.com/)
+  - Install:
+    - `sudo add-apt-repository ppa:moorkai/cinnamon`
+    - `sudo apt-get update && sudo apt-get install cinnamon`
+  - Remove: `sudo ppa-purge ppa:moorkai/cinnamon`
+- [Gnome](https://www.gnome.org) (Comes with Gnome/Gnome Classic)
+  - Install:
+    - `sudo apt-get install gnome-shell`
+  - Remove: `sudo apt-get remove gnome-shell`
+- [KDE](https://www.kde.org/)
+  - Install:
+    - `sudo add-apt-repository ppa:kubuntu-ppa/backports`
+    - `sudo apt-get update && sudo apt-get dist-upgrade`
+    - `sudo apt-get install kubuntu-desktop`
+  - Remove: `sudo apt-get remove kubuntu-desktop`
+- [LXQT](http://lxqt.org/)
+  - Install:
+    - `sudo apt-get install lxqt`
+  - Remove: `sudo apt-get remove lxqt`
+- [Pantheon - From Elementary OS](https://elementary.io/) (Not recommended, use Elementary OS instead)
+  - Install:
+    - `sudo add-apt-repository ppa:elementary-os/stable`
+    - `sudo apt-get update`
+    - `sudo apt-get install elementary-desktop`
+  - Remove: `sudo apt-get remove elementary-desktop`
+- [XFCE](http://www.xfce.org/)
+  - Install:
+    - `sudo apt-get install xfce4`
+  - Remove: `sudo apt-get remove xfce4`
 
 # Listing and Navigating
 ***
