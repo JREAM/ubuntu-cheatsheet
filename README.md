@@ -177,7 +177,8 @@ Linux has a lot of GUI's and you are not limited to what you get. I'll list a fe
 - [XUbuntu](https://xubuntu.org/screenshots/)
   - Install:
     - `sudo apt-get install xubuntu-desktop`
-  - Remove: `sudo apt-get remove xubuntu-desktop`
+  - Remove: 
+    - `sudo apt-get remove xubuntu-desktop`
 - [Cinnamon - From Linux Mint](https://www.linuxmint.com/)
   - Install:
     - `sudo add-apt-repository ppa:moorkai/cinnamon`
@@ -185,28 +186,37 @@ Linux has a lot of GUI's and you are not limited to what you get. I'll list a fe
   - Remove: `sudo ppa-purge ppa:moorkai/cinnamon`
 - [Gnome](https://www.gnome.org) (Comes with Gnome/Gnome Classic)
   - Install:
-    - `sudo apt-get install gnome-shell`
-  - Remove: `sudo apt-get remove gnome-shell`
+    - `sudo apt-get install ubuntu-gnome-desktop`
+  - Notes:
+    - There are some problems only installing `gnome-shell` on Ubuntu 14+. I would suggest using `gdm`, not `lightdm` ONLY if you are going to use Gnome as your only GUI with: `sudo dpkg-reconfigure gdm` or `sudo dpkg-reconfigure gdm3`
+  - Extending:
+    - Visit [Gnome Shell Extensions](https://extensions.gnome.org/) to customize anything you want. Make sure to use firefox.
+  - Remove: 
+    - `sudo apt-get remove gnome-shell`
 - [KDE](https://www.kde.org/)
   - Install:
     - `sudo add-apt-repository ppa:kubuntu-ppa/backports`
     - `sudo apt-get update && sudo apt-get dist-upgrade`
     - `sudo apt-get install kubuntu-desktop`
-  - Remove: `sudo apt-get remove kubuntu-desktop`
+  - Remove: 
+    - `sudo apt-get remove kubuntu-desktop`
 - [LXQT](http://lxqt.org/)
   - Install:
     - `sudo apt-get install lxqt`
-  - Remove: `sudo apt-get remove lxqt`
+  - Remove: 
+    - `sudo apt-get remove lxqt`
 - [Pantheon - From Elementary OS](https://elementary.io/) (Not recommended, use Elementary OS instead)
   - Install:
     - `sudo add-apt-repository ppa:elementary-os/stable`
     - `sudo apt-get update`
     - `sudo apt-get install elementary-desktop`
-  - Remove: `sudo apt-get remove elementary-desktop`
+  - Remove: 
+    - `sudo apt-get remove elementary-desktop`
 - [XFCE](http://www.xfce.org/)
   - Install:
     - `sudo apt-get install xfce4`
-  - Remove: `sudo apt-get remove xfce4`
+  - Remove: 
+    - `sudo apt-get remove xfce4`
 
 # Listing and Navigating
 ***
