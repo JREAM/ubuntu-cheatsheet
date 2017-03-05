@@ -165,6 +165,9 @@ If you get an error such as `Unable to lock the administration directory (/var/l
 - If nothing works, attempt rebooting the server
 
 # Installing GUI's
+***
+[(Back to Top)](#terminal)
+
 Linux has a lot of GUI's and you are not limited to what you get. I'll list a few popular ones with the installation instructions in Ubuntu. You can have as many GUI options as you like, just change the default at the login screen.
 
 > Tip: After you install, logout and in the login menu or the top right you can select what GUI you want to login with. Whenever you install a new GUI you can select a Display Manager, I recommend using `lightdm`. 
@@ -208,6 +211,7 @@ Linux has a lot of GUI's and you are not limited to what you get. I'll list a fe
 # Listing and Navigating
 ***
 [(Back to Top)](#terminal)
+
 ```
 ; Navigating
 ls                  (list files)
@@ -259,6 +263,7 @@ whoami              (show which user you are)
 # Groups
 ***
 [(Back to Top)](#terminal)
+
 Do not delete groups you don't know what they are used for, that's dangerous!
 ```
 groups                      (see what groups current user belongs to)
@@ -883,6 +888,9 @@ sudo ufw reset
 ```
 
 # Regex
+***
+[(Back to Top)](#terminal)
+
 Regex stands for Regular Expression. It's used for locating or replacing files or
 strings of text. It is used all the time. These can be used in Linux itself and programming
 languages.
@@ -1120,6 +1128,9 @@ git prune
 ```
 
 # Docker
+***
+[(Back to Top)](#terminal)
+
 To install visit [https://docs.docker.com/engine/installation/linux/ubuntulinux/](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 - **Images**: (Blueprints of an application)
     - **Image BASE**: No parent Image (An OS)
