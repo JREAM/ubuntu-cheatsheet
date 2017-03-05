@@ -1200,6 +1200,8 @@ Sometimes the system has problems, seldmoly but I'll list things that helped me 
 ### Ubuntu Infinite Login
 When you try to login to Ubuntu and it relogs you back into the login screen, this is an infinite loop. The only way I was able to fix it depsite all the guides was combining a few of these together for Ubuntu 16.04. 
 
+If you are using Gnome as I do, I would jump down to the **Apt Auto Remove Problem** in the list.
+
 The first step is to login to a terminal.
 
 ```
@@ -1228,6 +1230,9 @@ Next, Login as your user who must be able to run `sudo`.
   - Lastly restart lightdm: `sudo service lightdm restart`
 - **Apt Auto Remove Problem**
   - I read that it's possible `apt-autoremove` may accidentally remove `xubuntu-desktop`, `ubuntu-desktop` and LightDM reports no errors.
+    - The `ubuntu-desktop` will load the Unity interface
+    - The `xubuntu-desktop` will load a different interface I'm not familiar with.
+    - **If you are using Gnome**, try following the post at [OMGUbuntu](http://www.omgubuntu.co.uk/2016/05/install-gnome-3-20-ubuntu-16-04-lts)
   - To Fix: `sudo apt-get install xubuntu-desktop ubuntu-desktop`
 - **How to Ensure it Works**
   - You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.    
