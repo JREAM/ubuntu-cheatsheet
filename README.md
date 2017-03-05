@@ -23,6 +23,7 @@ This is an assortment of quick references to speed up your Terminal skills!
     - [System Processes](#system-processes)
     - [IP Address](#ip-address)
     - [GUI Processes](#gui-processes)
+    - [CLI Processes](#cli-processes)
 - [Kernal](#kernal)
     - [Remove Old Kernals](#remove-old-kernals)
 - [List all Keybindings](#list-all-keybindings)
@@ -123,6 +124,8 @@ hostname            (See your hostname)
 [(Back to Top)](#terminal)
 Apt (Or Aptitude) is the package manager for Ubuntu to manage packages and remove them.
 
+> Tip: You can use the `-y` flag in any apt command to skip the `[Y/n]` dialog.
+
 ### Apt Install
 You need super user permissions, or `sudo` before the command.
 To install packages, let's use an example such as ruby which should have a list of items.
@@ -164,6 +167,7 @@ If you get an error such as `Unable to lock the administration directory (/var/l
 ***
 [(Back to Top)](#terminal)
 ```
+; Navigating
 ls                  (list files)
 ls -la              (list all files, permissions, and hidden too)
 pwd                 (print working directory)
@@ -215,15 +219,16 @@ whoami              (show which user you are)
 [(Back to Top)](#terminal)
 Do not delete groups you don't know what they are used for, that's dangerous!
 ```
-groups                  (see what groups current user belongs to)
-groupadd name           (create a group)
-groupadd -g 900 name    (create a group with custom GroupID aka gid)
+groups                      (see what groups current user belongs to)
+groupadd name               (create a group)
+groupadd -g 900 name        (create a group with custom GroupID aka gid)
 
-groupdel name           (delete a group)
-sudo useradd <group>    (add current user to a group)
+groupdel name               (delete a group)
+useradd <group>             (add current user to a group)
+usermod -aG <group> <user>  (append any user to an additional group)
 
-cat /etc/group          (list all groups)
-cut -d: -f1 /etc/group  (list all groups, cleaner)
+cat /etc/group              (list all groups)
+cut -d: -f1 /etc/group      (list all groups, cleaner)
 ```
 
 # Permissions
@@ -237,7 +242,10 @@ There are two ways to manage permissions, one is by text the other is by an octa
 ; Change Mode
 ; Options: (O)wner (U)sers (G)roup or (A)ll
 ; File:    Owner: rwx, Group: rwx, User: rwx
+; Misc:    Besides rwx there is: 
+;          s = setuid of owner for old/new files
 
+; Single File read/write permissions
 chmod g+rw file
 chmod og+rw file.txt
 
@@ -249,6 +257,7 @@ chgrp group files_or_folder
 chown -R user:group files_or_folder
 chgrp -R group files_or_folder
 chmod -R og+rw files_or_folder
+chmod -R g+s files_or_folder
 ```
 
 ### Preserve Group Permissions
@@ -301,6 +310,7 @@ Get fundamental information about your OS with the following commands, you may h
 ##  Operating System
 
 ```
+lsb_release
 lsb_release -a
 lsb_release -as     # Short Information
 lsb_release --help
@@ -351,6 +361,13 @@ ip addr show eth0
 
 ```
 gnome-system-monitor
+```
+
+### CLI Processes
+```
+top
+htop     (My favorite, sudo apt-get install htop)
+nmon
 ```
 
 # List all Keybindings
@@ -903,7 +920,8 @@ Put Examples here, like phones, names, etc..
 [(Back to Top)](#terminal)
 
 - `-u` is for User (default: root)
-- `-p` is for Password
+- `-p` is for Password 
+- `-p password` is for password which skips the prompt (not recommended)
 - `-h` is for host (default: localhost)
 - `-port or -P` is for a port, default is 3306
 - `-f` will force SQL import and skips errors
@@ -1195,6 +1213,9 @@ docker push boyus
 ```
 
 # Troubleshooting
+***
+[(Back to Top)](#terminal)
+
 Sometimes the system has problems, seldmoly but I'll list things that helped me fix rare occasions.
 
 ### Ubuntu Infinite Login
@@ -1232,8 +1253,10 @@ Next, Login as your user who must be able to run `sudo`.
   - I read that it's possible `apt-autoremove` may accidentally remove `xubuntu-desktop`, `ubuntu-desktop` and LightDM reports no errors.
     - The `ubuntu-desktop` will load the Unity interface
     - The `xubuntu-desktop` will load a different interface I'm not familiar with.
-    - **If you are using Gnome**, try following the post at [OMGUbuntu](http://www.omgubuntu.co.uk/2016/05/install-gnome-3-20-ubuntu-16-04-lts)
-  - To Fix: `sudo apt-get install xubuntu-desktop ubuntu-desktop`
+    - To Fix: `sudo apt-get install xubuntu-desktop ubuntu-desktop`
+  - **If you are using Gnome**, try following the post at [OMGUbuntu](http://www.omgubuntu.co.uk/2016/05/install-gnome-3-20-ubuntu-16-04-lts)
+    - After the Above Try: `sudo apt-get autoremove gnome-software && sudo apt-get install gnome-software`
+    - I was able to get Gnome-Classic working but not Gnome.
 - **How to Ensure it Works**
   - You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.    
     
