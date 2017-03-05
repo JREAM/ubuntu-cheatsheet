@@ -96,6 +96,9 @@ This is an assortment of quick references to speed up your Terminal skills!
     - [Create Docker Image](#create-docker-image)
     - [Remove Docker Image](#remove-docker-image)
     - [Pushing Images](#pushing-images)
+- [Troubleshooting](#troubleshooting)
+    - [Ubuntu Infinite Login](#ubuntu-infinite-login)
+
 
 # Basics
 ***
@@ -1190,3 +1193,42 @@ You need a repository at docker.io to push this, or probably some private hostin
 ```
 docker push boyus
 ```
+
+# Troubleshooting
+Sometimes the system has problems, seldmoly but I'll list things that helped me fix rare occasions.
+
+### Ubuntu Infinite Login
+When you try to login to Ubuntu and it relogs you back into the login screen, this is an infinite loop. The only way I was able to fix it depsite all the guides was combining a few of these together for Ubuntu 16.04. 
+
+The first step is to login to a terminal.
+
+```
+CTRL + ALT + F1  (Or F3)
+```
+
+Next, Login as your user who must be able to run `sudo`.
+
+- **Temp Folder Permissions**
+  - `ls -ld /tmp` should have these permission exactly as: `drwxrwxrwt`
+  - The user:group must be `root:root` on `/tmp`.
+  - To Fix: `sudo chmod a+wt /tmp`
+- **Xauthority Ownership**
+  - `ls -lta | grep .Xa` should be owned by your user, for example `jesse jesse`
+   - If it is `root root` or anything than your user/group it's wrong.
+   - To Fix: `sudo chown jesse:jesse .Xauthority`
+- **Xsession Errors**
+  - This is just to make sure there are no syntax errors for your reference:
+    - To Check: `cat ~/.xsession-errors`
+    - You don't need to do anything if there are syntax errors, we will move the file.
+- **Try Moving XAuthority**
+  - Sometimes it's as easy to moving Xauthority so a new is generated at login.
+  - To Fix: `sudo ~/.Xauthority ~/.Xauthority.bkup`
+- **Try Reconfiguring LightDM**
+  - Fix: `dpkg-reconfigure lightdm`, then select lightdm in the menu
+  - Lastly restart lightdm: `sudo service lightdm restart`
+- **Apt Auto Remove Problem**
+  - I read that it's possible `apt-autoremove` may accidentally remove `xubuntu-desktop`, `ubuntu-desktop` and LightDM reports no errors.
+  - To Fix: `sudo apt-get install xubuntu-desktop ubuntu-desktop`
+- **How to Ensure it Works**
+  - You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.    
+    
