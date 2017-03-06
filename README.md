@@ -19,7 +19,7 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Octal Examples](#octal-examples)
     - [Preserve Group Permissions](#preserve-group-permissions)
 - [OS Details](#os-details)
-    - [Operating System](#operating-system)g
+    - [Operating System](#operating-system)
     - [CPU Info](#cpu-info)
     - [Usage Info](#usage-info)
     - [Disk Space](#disk-space)
