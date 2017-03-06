@@ -1260,7 +1260,7 @@ sudo apt-get install xubuntu-desktop
 sudo apt-get remove xubuntu-desktop
 ```
 
-### Cinnamon - Linux Mint
+### Cinnamon (Linux Mint)
 
 [**Linux Mint Website**](https://www.linuxmint.com/)
 
@@ -1324,7 +1324,7 @@ sudo apt-get install lxqt
 sudo apt-get remove lxqt
 ```
 
-### Pantheon - ElementaryOS
+### Pantheon (ElementaryOS)
 
 [**Elementary OS Website**](https://elementary.io/) 
 
