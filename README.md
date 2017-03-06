@@ -98,6 +98,14 @@ This is an assortment of quick references to speed up your Terminal skills!
     - [Remove Docker Image](#remove-docker-image)
     - [Pushing Images](#pushing-images)
 - [Installing GUI's](#installing-guis)
+  - [Unity](#unity)
+  - [XUbuntu](#xubuntu)
+  - [Cinnamon - Linux Mint](#cinnamon-linux-mint)
+  - [GNOME](#gnome)
+  - [KDE](#kde)
+  - [LXQT](#lxqt)
+  - [Pantheon - ElementaryOS](#pantheon-elementaryos)
+  - [XFCE](#xfce)
 - [Troubleshooting](#troubleshooting)
     - [Ubuntu Infinite Login](#ubuntu-infinite-login)
 
@@ -1232,12 +1240,18 @@ Linux has a lot of GUI's and you are not limited to what you get. I'll list a fe
 
 --
 
-[**Unity (Default)**](https://unity.ubuntu.com/)
+### Unity
+
+[**Unity Website**](https://unity.ubuntu.com/)
+
 ```
 Installed in Ubuntu 12+ by Default (`ubuntu-desktop`)
 ```
 
-[**XUbuntu**](https://xubuntu.org/screenshots/)
+### XUbuntu
+
+[**XUbuntu Website**](https://xubuntu.org/)
+
 ```
 ; Install:
 sudo apt-get install xubuntu-desktop
@@ -1246,7 +1260,10 @@ sudo apt-get install xubuntu-desktop
 sudo apt-get remove xubuntu-desktop
 ```
 
-[**Cinnamon - From Linux Mint**](https://www.linuxmint.com/)
+### Cinnamon - Linux Mint
+
+[**Linux Mint Website**](https://www.linuxmint.com/)
+
 ```
 ; Install:
 sudo add-apt-repository ppa:moorkai/cinnamon
@@ -1256,7 +1273,10 @@ sudo apt-get update && sudo apt-get install cinnamon
 sudo ppa-purge ppa:moorkai/cinnamon
 ```
 
-[**Gnome**](https://www.gnome.org)
+
+### GNOME
+
+[**GNOME Website**](https://www.gnome.org)
 
 This has been one of the all time most popular GUI's for Linux ever made, in particular the `gnome-classic`.
 
@@ -1276,7 +1296,13 @@ sudo apt-get remove ubuntu-gnome-desktop     (Removes gnome-shell as well)
  
 Noteworthy: Visit [Gnome Shell Extensions](https://extensions.gnome.org/) to customize anything you want. Make sure to use Firefox.
 
-[**KDE**](https://www.kde.org/)
+
+### KDE
+
+[**KDE Website**](https://www.kde.org/)
+
+This is a very popular GUI for people that are used to Windows Desktops.
+
 ```
 ; Install:
 sudo add-apt-repository ppa:kubuntu-ppa/backports
@@ -1287,7 +1313,10 @@ sudo apt-get install kubuntu-desktop
 sudo apt-get remove kubuntu-desktop
 ```
 
-[**LXQT**](http://lxqt.org/)
+### LXQT
+
+[**LXQT Website**](http://lxqt.org/)
+
 ```
 ; Install:
 sudo apt-get install lxqt
@@ -1295,8 +1324,12 @@ sudo apt-get install lxqt
 sudo apt-get remove lxqt
 ```
 
-[**Pantheon - From Elementary OS**](https://elementary.io/) 
+### Pantheon - ElementaryOS
+
+[**Elementary OS Website**](https://elementary.io/) 
+
 For the best stability I use Elementary OS which is based off of Ubuntu.
+
 ```
 ; Install:
 sudo add-apt-repository ppa:elementary-os/stable
@@ -1307,7 +1340,10 @@ sudo apt-get install elementary-desktop
 sudo apt-get remove elementary-desktop
 ```
 
-[**XFCE**](http://www.xfce.org/)
+### XFCE
+
+[**XFCE Website**](http://www.xfce.org/)
+
 ```
 ; Install:
 sudo apt-get install xfce4
