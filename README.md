@@ -1,5 +1,8 @@
-# Terminal
-This is an assortment of quick references to speed up your Terminal skills!
+# Ubuntu Cheatsheet
+
+This covers a wide assortment of quick references for the terminal/command-line. Additionally, near the bottom are more items for GUI and Troubleshooting.
+
+# Table of Contents
 - [Basics](#basics)
 - [Apt](#apt)
   - [Apt Install](#apt-install)
@@ -108,11 +111,11 @@ This is an assortment of quick references to speed up your Terminal skills!
   - [XFCE](#xfce)
 - [Troubleshooting](#troubleshooting)
     - [Ubuntu Infinite Login](#ubuntu-infinite-login)
-
+- [Linux Facts](#linux-facts)
 
 # Basics
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 ```
 :x                  (Anytime you are in VIM, MAN page, LESS, etc, this is how you exit)
 
@@ -130,7 +133,7 @@ hostname            (See your hostname)
 
 # Apt
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 Apt (Or Aptitude) is the package manager for Ubuntu to manage packages and remove them.
 
 > Tip: You can use the `-y` flag in any apt command to skip the `[Y/n]` dialog.
@@ -174,7 +177,7 @@ If you get an error such as `Unable to lock the administration directory (/var/l
 
 # Listing and Navigating
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ```
 ; Navigating
@@ -208,7 +211,7 @@ tail <file> -f      (stream file as it's updated, eg: an error log)
 
 # Users
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ```
 su - username       (switch users)
@@ -226,7 +229,7 @@ whoami              (show which user you are)
 
 # Groups
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Do not delete groups you don't know what they are used for, that's dangerous!
 ```
@@ -244,7 +247,7 @@ cut -d: -f1 /etc/group      (list all groups, cleaner)
 
 # Permissions
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 There are two ways to manage permissions, one is by text the other is by an octal value.
 
@@ -314,7 +317,7 @@ chmod 777 file.txt – All Read, Write, Execute
 
 # OS Details
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Get fundamental information about your OS with the following commands, you may have to run them as `sudo`, eg: `sudo lsb_release -a`.
 
@@ -383,14 +386,14 @@ nmon
 
 # List all Keybindings
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ```
 gsettings list-recursively  org.gnome.desktop.wm.keybindings | sort | more
 ```
 
 ### See Keypressed
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ```
 xev
@@ -402,7 +405,7 @@ xev | grep KeyPress
 
 # Kernal
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 The Kernal is the lowest level item that ties everything together from hardware to software.
 Without a kernal you cannot do anything on linux.
@@ -427,7 +430,7 @@ sudo purge-old-kernels
 
 # OS Shutdown
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 ```
 shutdown
 reboot
@@ -438,7 +441,7 @@ shutdown -r now     (reboot now)
 
 # Crontab
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 ```
 crontab -e              (edit crontab for current user)
 crontab -l              (list crontab for other user)
@@ -447,7 +450,7 @@ crontab -u jesse -l     (see crontabs for specific user)
 
 # Services
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 ```
 service ssh status      (service status)
 service --status-all    (all services status)
@@ -455,7 +458,7 @@ service --status-all    (all services status)
 
 # System State
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 ```
 uname -a (get linux info)
 
@@ -473,7 +476,7 @@ free -g (in gigabytes)
 
 # Processes
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 ```
 ps -ef | more       (current running processes)
 ps -efH | more      (current running processes in a tree)
@@ -484,7 +487,7 @@ kill -9 <id>        (no brackets)
 
 # Bash
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Bash is my shell of choice, which is why I have a `.bashrc` file.
 
@@ -560,7 +563,7 @@ You could even crontab it the same way:
 
 # Finding Files
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Generally the following arguments are as follows:
 - `-type f` file
@@ -583,7 +586,7 @@ find / -size +50M -size -100M (findby swize)
 
 # Find in Files (GREP)
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 GREP means: Global Regular Expression Pattern (or Parser)
 
@@ -623,7 +626,7 @@ php -i | grep ini
 
 # Reading Files
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Without having to open a file you can simply read a part of it without `nano`, `pico, `vi`, or `vim`:
 ```
@@ -637,7 +640,7 @@ head -n20 file.txt      (view top 20 lines)
 
 # Downloading Files
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ### Using Wget
 ```
@@ -656,7 +659,7 @@ curl -O http://url_1 -O http://url_2                (Download multiple files)
 
 # Compressing and Uncompressing Files
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 To Compress a file you can use a variety of tools. You can type `man gzip` to see the full manual and line of commands, and use `esc` + `:x` and `ENTER` to exit from the Manual (It usually uses the Vi editor).
 
@@ -710,7 +713,7 @@ unzip test.zip
 
 # SCP
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ### Download from server to local
 ```
@@ -724,7 +727,7 @@ scp file.txt root@server.com:/path/to/file.txt
 
 # SSH
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ### Connecting to a server
 ```
@@ -769,7 +772,7 @@ ssh my-vps
 
 # Firewall
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 A firewall prevents unauthorized access to your machine, you should use `UFW` (Uncomplicated Firewall). You must always run this with `sudo`. If you don't have UFW installed, run:
 
@@ -853,7 +856,7 @@ sudo ufw reset
 
 # Regex
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Regex stands for Regular Expression. It's used for locating or replacing files or
 strings of text. It is used all the time. These can be used in Linux itself and programming
@@ -931,7 +934,7 @@ Put Examples here, like phones, names, etc..
 
 # MySQL
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 - `-u` is for User (default: root)
 - `-p` is for Password 
@@ -1002,7 +1005,7 @@ mysql -u root -p DATABASE_NAME | gunzip < output.sql.gz
 
 # Git
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 ### Populate a Repository
 You have to first create a repostory, through BitBucket, GitHub, GitLab, etc.
@@ -1093,7 +1096,7 @@ git prune
 
 # Docker
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 To install visit [https://docs.docker.com/engine/installation/linux/ubuntulinux/](https://docs.docker.com/engine/installation/linux/ubuntulinux/)
 - **Images**: (Blueprints of an application)
@@ -1232,7 +1235,7 @@ docker push boyus
 
 # Installing GUI's
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Linux has a lot of GUI's and you are not limited to what you get. I'll list a few popular ones with the installation instructions in Ubuntu. You can have as many GUI options as you like, just change the default at the login screen.
 
@@ -1288,11 +1291,7 @@ sudo apt-get install ubuntu-gnome-desktop    (For legacy gnome use you can use g
 sudo apt-get remove ubuntu-gnome-desktop     (Removes gnome-shell as well)
 ```
 
-> Gnome3 has been my favorite GUI due to how I can customize it. However, for unknown reasons I randomly had problems with Gnome only on one computer, the login-loop. Additionally, even a fresh Ubuntu-Gnome 16.04 ISO gave me the same issue, as well as a fresh Ubuntu 16.04 ISO. 
-
-> My Results with Ubuntu-Gnome 16.10: 
-
-> There are some problems only installing `gnome-shell` on Ubuntu 14+. Some suggest using the `gdm` display manager, yet I've always used `lightdm`. To reconfigure your display manager: `sudo dpkg-reconfigure <gdm|gdm3|lightdm>`.
+> Gnome3 has been my favorite GUI due to how I can customize it. However, for unknown reasons I have issues running only Gnome3 in VMWare Workstation 11. It works fine as a complete install. 
  
 Noteworthy: Visit [Gnome Shell Extensions](https://extensions.gnome.org/) to customize anything you want. Make sure to use Firefox.
 
@@ -1354,7 +1353,7 @@ sudo apt-get remove xfce4
 
 # Troubleshooting
 ***
-[(Back to Top)](#terminal)
+[(Back to Top)](#table-of-contents)
 
 Sometimes the system has problems, seldmoly but I'll list things that helped me fix rare occasions.
 
@@ -1400,3 +1399,20 @@ Next, Login as your user who must be able to run `sudo`.
 - **How to Ensure it Works**
   - You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.    
     
+# Linux Facts
+***
+[(Back to Top)](#table-of-contents)
+
+- **Linux Versions** refers to The Kernel which ties the OS together.
+- **Linux Distributions** are the named Linux "Flavors" below.
+  - **Debian**
+    - **Linux Mint** (LMDE) forked from Debian
+    - **Ubuntu** forked from Debian
+      - **Elementary OS** forked from Ubuntu
+      - **Linux Mint** forked from Ubuntu
+      - **Kubuntu** forked from Ubuntu
+  - **Fedora**
+    - **Red Hat Enterprise Linux** (RHEL) forked from Fedora
+      - **CentOS** forked from RHEL (Community Edition of RHEL)
+  - **Gentoo**
+- ..And many others. Debian -> Ubuntu has been the most popular.
