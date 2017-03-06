@@ -80,6 +80,7 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Ignoring files](#ignoring-files)
     - [Create a Branch](#create-a-branch)
     - [Switch Branches](#switch-branches)
+    - [Pull One File From Another Branch](#pull-one-file-from-another-branch)
     - [Create a Tag](#create-a-tag)
     - [Remove a Tag](#remove-a-tag)
     - [Clone a Respository](#clone-a-repository)
@@ -1044,6 +1045,18 @@ git push origin develop
 ```
 git checkout master
 git checkout develop
+```
+
+### Pull One File From Another Branch
+If you were on your `master` branch and only wanted to pull a single file from `develop` branch, you can do this:
+```
+; Make sure you're on the branch you want to pull into
+git checkout master
+
+; Pull a single file into master from develop
+git checkout develop -- relative/path.txt
+
+; Continue by comitting and pushing to master
 ```
 
 ### Create a Tag
