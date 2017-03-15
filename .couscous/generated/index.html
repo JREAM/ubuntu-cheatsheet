@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title></title>
+
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/highlight.dark.css">
+        <link rel="stylesheet" href="/css/main.css">
+    </head>
+    <body>
+
+        <header class="navbar navbar-default navbar-fixed-top">
+
+            <a class="navbar-brand" href="/">
+                The title
+                <small class="hidden-xs hidden-sm">
+                    This is the default subtitle!
+                </small>
+            </a>
+
+            
+        </header>
+
+        <main class="container">
+            <div class="row">
+
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="ubuntu-cheatsheet">Ubuntu Cheatsheet</h1>
+<p>This covers a wide assortment of quick references for the terminal/command-line. Additionally, near the bottom are more items for GUI and Troubleshooting.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<ul>
+<li><a href="#basics">Basics</a></li>
+<li><a href="#apt">Apt</a>
+<ul>
+<li><a href="#apt-install">Apt Install</a></li>
+<li><a href="#apt-update">Apt Update</a></li>
+<li><a href="#apt-upgrade">Apt Upgrade</a></li>
+<li><a href="#apt-remove">Apt Remove</a></li>
+<li><a href="#apt-lock-error">Apt Lock Error</a></li>
+</ul></li>
+<li><a href="#listing-and-navigating">Listing and Navigating</a></li>
+<li><a href="#users">Users</a></li>
+<li><a href="#groups">Groups</a></li>
+<li><a href="#permissions">Permissions</a>
+<ul>
+<li><a href="#easy-permissions">Easy Permissions</a></li>
+<li><a href="#octal-permissions">Octal Permissions</a></li>
+<li><a href="#octal-examples">Octal Examples</a></li>
+<li><a href="#preserve-group-permissions">Preserve Group Permissions</a></li>
+</ul></li>
+<li><a href="#os-details">OS Details</a>
+<ul>
+<li><a href="#operating-system">Operating System</a></li>
+<li><a href="#cpu-info">CPU Info</a></li>
+<li><a href="#usage-info">Usage Info</a></li>
+<li><a href="#disk-space">Disk Space</a></li>
+<li><a href="#system-processes">System Processes</a></li>
+<li><a href="#ip-address">IP Address</a></li>
+<li><a href="#gui-processes">GUI Processes</a></li>
+<li><a href="#cli-processes">CLI Processes</a></li>
+</ul></li>
+<li><a href="#kernal">Kernal</a>
+<ul>
+<li><a href="#remove-old-kernals">Remove Old Kernals</a></li>
+</ul></li>
+<li><a href="#list-all-keybindings">List all Keybindings</a>
+<ul>
+<li><a href="#see-keypressed">See Keypressed</a></li>
+</ul></li>
+<li><a href="#os-shutdown">OS Shutdown</a></li>
+<li><a href="#crontab">Crontab</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#system-state">System State</a></li>
+<li><a href="#processes">Processes</a></li>
+<li><a href="#bash">Bash</a>
+<ul>
+<li><a href="#bash-paths">Bash Paths</a></li>
+<li><a href="#add-to-path">Add to Path</a></li>
+<li><a href="#bash-completions">Bash Completions</a></li>
+<li><a href="#fix-broken-bash-completions">Fix Broken Bash Completions</a></li>
+<li><a href="#log-script-from-bash">Log Script from Bash</a></li>
+</ul></li>
+<li><a href="#finding-files">Finding Files</a></li>
+<li><a href="#find-in-files-grep">Find in Files (GREP)</a>
+<ul>
+<li><a href="#pipe-grep">Pipe Grep</a></li>
+</ul></li>
+<li><a href="#reading-files">Reading Files</a></li>
+<li><a href="#downloading-files">Downloading Files</a>
+<ul>
+<li><a href="#using-wget">Using Wget</a></li>
+<li><a href="#using-curl">Using cURL</a></li>
+</ul></li>
+<li><a href="#compressing-and-uncompressing-files">Compressing and Uncompressing Files</a>
+<ul>
+<li><a href="#compressing-files">Compressing Files</a></li>
+<li><a href="#decompressing-files">Decompressing Files</a></li>
+</ul></li>
+<li><a href="#scp">SCP</a>
+<ul>
+<li><a href="#download-from-server-to-local">Download from server to local</a></li>
+<li><a href="#upload-from-local-to-server">Upload from local to server</a></li>
+</ul></li>
+<li><a href="#ssh">SSH</a>
+<ul>
+<li><a href="#connecting-to-a-server">Connecting to a server</a></li>
+<li><a href="#ssh-permissions">SSH Permissions</a></li>
+<li><a href="#using-the-config">Using the Config</a></li>
+</ul></li>
+<li><a href="#firewall">Firewall</a>
+<ul>
+<li><a href="#ufw-status">UFW Status</a></li>
+<li><a href="#ufw-enabledisable">UFW Enable/Disable</a></li>
+<li><a href="#ufw-example-customization">UFW Example Customization</a></li>
+<li><a href="#ufw-more-options">UFW More Options</a></li>
+<li><a href="#ufw-deleting-rules">UFW Deleting Rules</a></li>
+<li><a href="#ufw-reset-rules">UFW Reset Rules</a></li>
+</ul></li>
+<li><a href="#regex">Regex</a>
+<ul>
+<li><a href="#regex-examples">Regex Examples</a></li>
+</ul></li>
+<li><a href="#mysql">MySQL</a>
+<ul>
+<li><a href="#connecting">Connecting</a></li>
+<li><a href="#exporting-database-to-sql">Exporting Database to SQL</a></li>
+<li><a href="#importing-sql-files">Importing SQL Files</a></li>
+<li><a href="#exporting-compressed-database">Exporting Compressed Database</a></li>
+<li><a href="#importing-compressed-database">Importing Compressed Database</a></li>
+</ul></li>
+<li><a href="#git">Git</a>
+<ul>
+<li><a href="#populate-a-repository">Populate a Repository</a></li>
+<li><a href="#add-or-remove-files">Add or Remove Files</a></li>
+<li><a href="#ignoring-files">Ignoring files</a></li>
+<li><a href="#create-a-branch">Create a Branch</a></li>
+<li><a href="#switch-branches">Switch Branches</a></li>
+<li><a href="#pull-one-file-from-another-branch">Pull One File From Another Branch</a></li>
+<li><a href="#create-a-tag">Create a Tag</a></li>
+<li><a href="#remove-a-tag">Remove a Tag</a></li>
+<li><a href="#clone-a-repository">Clone a Respository</a></li>
+<li><a href="#current-status">Current Status</a></li>
+<li><a href="#commit-log-and-show">Commit Log and Show</a></li>
+<li><a href="#reset-hard">Reset Hard</a></li>
+<li><a href="#prune">Prune</a></li>
+</ul></li>
+<li><a href="#docker">Docker</a>
+<ul>
+<li><a href="#docker-compose">Docker Compose</a>  </li>
+<li><a href="#test-box-run">Test Box Run</a></li>
+<li><a href="#see-running-containers">See Running Containers</a></li>
+<li><a href="#run-container-interactively">Run Container Interactively</a></li>
+<li><a href="#remove-container">Remove Container</a></li>
+<li><a href="#bulk-remove-containers">Bulk Remove Containers</a></li>
+<li><a href="#webserver-test-run">Webserver Test Run</a></li>
+<li><a href="#stop-container">Stop Container</a></li>
+<li><a href="#get-new-docker-image">Get New Docker Image</a></li>
+<li><a href="#create-docker-image">Create Docker Image</a></li>
+<li><a href="#remove-docker-image">Remove Docker Image</a></li>
+<li><a href="#pushing-images">Pushing Images</a></li>
+</ul></li>
+<li><a href="#installing-guis">Installing GUI's</a>
+<ul>
+<li><a href="#unity">Unity</a></li>
+<li><a href="#xubuntu">XUbuntu</a></li>
+<li><a href="#cinnamon-linux-mint">Cinnamon - Linux Mint</a></li>
+<li><a href="#gnome">GNOME</a></li>
+<li><a href="#kde">KDE</a></li>
+<li><a href="#lxqt">LXQT</a></li>
+<li><a href="#pantheon-elementaryos">Pantheon - ElementaryOS</a></li>
+<li><a href="#xfce">XFCE</a></li>
+</ul></li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#ubuntu-infinite-login">Ubuntu Infinite Login</a></li>
+</ul></li>
+<li><a href="#linux-facts">Linux Facts</a></li>
+</ul>
+<h1 id="basics">Basics</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>:x                  (Anytime you are in VIM, MAN page, LESS, etc, this is how you exit)
+
+whereis bash        (find absolute location of bash, or any file)
+whatis ls           (tells you about the command)
+man ls              (manual to give you a list of all command arguments for any command)
+locate crontab      (I like mlocate more)
+which python        (location of a program)
+clear               (dlears the terminal)
+date                (current datetime)
+echo                (output to terminal)
+env                 (See environment variables)
+hostname            (See your hostname)</code></pre>
+<h1 id="apt">Apt</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a>
+Apt (Or Aptitude) is the package manager for Ubuntu to manage packages and remove them.</p>
+<blockquote>
+<p>Tip: You can use the <code>-y</code> flag in any apt command to skip the <code>[Y/n]</code> dialog.</p>
+</blockquote>
+<h3 id="apt-install">Apt Install</h3>
+<p>You need super user permissions, or <code>sudo</code> before the command.
+To install packages, let's use an example such as ruby which should have a list of items.</p>
+<pre><code>sudo apt-get install rub&lt;TAB&gt;  ; Press the tab key to see a list, type :q to exit the list
+sudo apt-get install ruby2.3</code></pre>
+<h3 id="apt-update">Apt Update</h3>
+<p>This updates the sources list located in <code>/etc/apt/sources.list.d/</code> which is where the OS knows where to download files from. You will do this time to time if it's been a while.</p>
+<pre><code>sudo apt-get update</code></pre>
+<h3 id="apt-upgrade">Apt Upgrade</h3>
+<p>This will upgrade packages that have newer versions.</p>
+<pre><code>sudo apt-get upgrade</code></pre>
+<h3 id="apt-remove">Apt Remove</h3>
+<p>Removing a package is quite simple. However, this will not remove configuration files, so if you were to re-install it they would be preserved. You would use <code>apt-get purge ruby2.3*</code> to purge all files.</p>
+<pre><code>sudo apt-get remove ruby2.3</code></pre>
+<h3 id="apt-lock-error">Apt Lock Error</h3>
+<p>If you get an error such as <code>Unable to lock the administration directory (/var/lib/dpkg/) is another process</code>, follow these steps:</p>
+<ul>
+<li>Make sure you are not logged in as another user running apt</li>
+<li>Delete the lock and archive file files:
+<ul>
+<li><code>sudo rm /var/lib/apt/lists/lock</code></li>
+<li><code>sudo rm /var/cache/apt/archives/lock</code></li>
+<li><code>sudo dpkg --configure -a</code></li>
+</ul></li>
+<li>If nothing works, attempt rebooting the server</li>
+</ul>
+<h1 id="listing-and-navigating">Listing and Navigating</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>; Navigating
+ls                  (list files)
+ls -la              (list all files, permissions, and hidden too)
+pwd                 (print working directory)
+cd ..               (go down a directory)
+cd /                (go to lowest level)
+cd ~                (go to logged in user's home)
+cd /var/www         (go to absolute path)
+
+; Manage Files and Folders
+mkdir &lt;dir&gt;         (create a directory)
+rmdir &lt;dir&gt;         (remove an empty directory)
+rm -rf &lt;dir&gt;        (remove a directory with contents)
+touch &lt;file&gt;        (create an empty file)
+mv &lt;file&gt; &lt;loc&gt;     (move file from location to new location)
+cp &lt;file&gt; &lt;loc&gt;     (copy file from location to new location)
+mv &lt;dir&gt; &lt;loc&gt;      (move directory from location to new location)
+cp -R &lt;dir&gt; &lt;loc&gt;   (copy directory from location to new location)
+
+; Reading Files
+cat &lt;file&gt;          (read entire file)
+head &lt;file&gt;         (read top of a file)
+head &lt;file&gt; -n 20   (read top of file 20 lines)
+tail &lt;file&gt;         (read bottom of a file)
+tail &lt;file&gt; -n 20   (read bottom of file 20 lines)
+tail &lt;file&gt; -f      (stream file as it's updated, eg: an error log)</code></pre>
+<h1 id="users">Users</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>su - username       (switch users)
+sudo su             (switch to root)
+
+passwd              (change logged in users password)
+passwd username     (change another users password)
+
+useradd -m -s /bin/bash username
+usermod -a -G existing_group existing_user
+
+who                 (show all logged in users)
+whoami              (show which user you are)</code></pre>
+<h1 id="groups">Groups</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Do not delete groups you don't know what they are used for, that's dangerous!</p>
+<pre><code>groups                      (see what groups current user belongs to)
+groupadd name               (create a group)
+groupadd -g 900 name        (create a group with custom GroupID aka gid)
+
+groupdel name               (delete a group)
+useradd &lt;group&gt;             (add current user to a group)
+usermod -aG &lt;group&gt; &lt;user&gt;  (append any user to an additional group)
+
+cat /etc/group              (list all groups)
+cut -d: -f1 /etc/group      (list all groups, cleaner)</code></pre>
+<h1 id="permissions">Permissions</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>There are two ways to manage permissions, one is by text the other is by an octal value.</p>
+<h3 id="easy-permissions">Easy Permissions</h3>
+<pre><code>; Change Mode
+; Options: (O)wner (U)sers (G)roup or (A)ll
+; File:    Owner: rwx, Group: rwx, User: rwx
+; Misc:    Besides rwx there is: 
+;          s = setuid of owner for old/new files
+
+; Single File read/write permissions
+chmod g+rw file
+chmod og+rw file.txt
+
+; Change Ownership
+chown user:group files_or_folder
+chgrp group files_or_folder
+
+; Recursively:
+chown -R user:group files_or_folder
+chgrp -R group files_or_folder
+chmod -R og+rw files_or_folder
+chmod -R g+s files_or_folder</code></pre>
+<h3 id="preserve-group-permissions">Preserve Group Permissions</h3>
+<p>A fantastic way to structure your users is within groups. A common example would be your <code>www-data</code> group.
+If I have a user <code>jesse</code>, I can add him with <code>sudo usermod -aG www-data jesse</code>. </p>
+<p>After adding any users I would like, I want to have a folder where all the members of the <code>www-data</code> group
+can read/write a folder. If they are using git, I also want the permissions to stay the same, meaning if they
+pull the permissions will not change. </p>
+<p>To accomplish this, here is an example:</p>
+<pre><code>sudo chown -R deploy:www-data /var/www
+sudo chmod -R g+rws /var/www</code></pre>
+<p>The <code>g+s</code> sets the file(s)/folder(s) a gid (<code>setgid</code>) so that new files will inherit the original group!</p>
+<h3 id="octal-permissions">Octal Permissions</h3>
+<p>You may have seen this a lot, you can use octal or decimal (begins with a 0) to do the same thing.</p>
+<pre><code>Permissions:
+0 = None
+1 = Execute (e)
+2 = Write (w)
+4 = Read (r)</code></pre>
+<ul>
+<li>There are 3 Permission types (Read, Write, Execute), or 4 if you count &quot;None&quot;.</li>
+<li>There are 3 Sets: Owner/User/Group (In that order)</li>
+<li>So if you did <code>chmod 700 file.txt</code> it would allow the user to Read, Write and Execute
+<ul>
+<li>Because <code>7</code> is the total of <code>4 + 2 + 1</code></li>
+</ul></li>
+</ul>
+<h3 id="octal-examples">Octal Examples</h3>
+<pre><code>chmod 600 file.txt – Owner Read, Write
+chmod 660 file.txt – Owner Read, Write; User Read, Write
+chmod 770 file.txt – Owner Read, Write, Execute
+chmod 770 file.txt – Owner Read, Write, Execute; User Read, Write, Execute
+chmod 666 file.txt – All Read, Write
+chmod 777 file.txt – All Read, Write, Execute</code></pre>
+<h1 id="os-details">OS Details</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Get fundamental information about your OS with the following commands, you may have to run them as <code>sudo</code>, eg: <code>sudo lsb_release -a</code>.</p>
+<h2 id="operating-system">Operating System</h2>
+<pre><code>lsb_release
+lsb_release -a
+lsb_release -as     # Short Information
+lsb_release --help</code></pre>
+<h3 id="cpu-info">CPU Info</h3>
+<pre><code>nproc               # How many Processing Units
+cpuid               # Must install cpuid from terminal
+cat /proc/cpuinfo   # Lots of info</code></pre>
+<h3 id="usage-info">Usage Info</h3>
+<pre><code>free -h             # Human readable, or do --help for options
+vmstat -s
+cat /proc/meminfo   # Lots of info</code></pre>
+<h3 id="disk-space">Disk Space</h3>
+<pre><code>df
+df -B MB    (In Megabtyes, KB for Kilobytes, GB for Gigabytes)</code></pre>
+<h3 id="system-processes">System Processes</h3>
+<pre><code>top
+htop  # If you installed it</code></pre>
+<h3 id="ip-address">IP Address</h3>
+<p>Your IP is after <code>inet addr</code>. If you are connect via ethernet it's under <code>eth0 (Ethernet)</code> otherwise, wirelessly it is likely under <code>wlan0 (Wireless LAN)</code>.</p>
+<pre><code>ifconfig
+ip
+ip addr show
+ip addr show wlan
+ip addr show eth0</code></pre>
+<h3 id="gui-processes">GUI Processes</h3>
+<pre><code>gnome-system-monitor</code></pre>
+<h3 id="cli-processes">CLI Processes</h3>
+<pre><code>top
+htop     (My favorite, sudo apt-get install htop)
+nmon</code></pre>
+<h1 id="list-all-keybindings">List all Keybindings</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>gsettings list-recursively  org.gnome.desktop.wm.keybindings | sort | more</code></pre>
+<h3 id="see-keypressed">See Keypressed</h3>
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>xev
+
+; Or for a lot of details:
+
+xev | grep KeyPress</code></pre>
+<h1 id="kernal">Kernal</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>The Kernal is the lowest level item that ties everything together from hardware to software.
+Without a kernal you cannot do anything on linux.</p>
+<h3 id="remove-old-kernals">Remove Old Kernals</h3>
+<p>See What version you are currently using </p>
+<pre><code>sudo uname -a</code></pre>
+<p>See all the Kernals on the OS</p>
+<pre><code>sudo dpkg --get-selections | grep linux  </code></pre>
+<p>The BYOBU is quite nice</p>
+<pre><code>sudo apt install byobu 
+sudo purge-old-kernels</code></pre>
+<h1 id="os-shutdown">OS Shutdown</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>shutdown
+reboot
+shutdown -h now
+shutdown -h +10     (shutdown 10 mins)
+shutdown -r now     (reboot now)</code></pre>
+<h1 id="crontab">Crontab</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>crontab -e              (edit crontab for current user)
+crontab -l              (list crontab for other user)
+crontab -u jesse -l     (see crontabs for specific user)</code></pre>
+<h1 id="services">Services</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>service ssh status      (service status)
+service --status-all    (all services status)</code></pre>
+<h1 id="system-state">System State</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>uname -a (get linux info)
+
+top (See running processes/system status, I suggest installing `htop`)
+top -u www-data
+htop -u www-data
+
+df          (display disk space in bytes, default)
+df -h       (display disk space human readable)
+df -Th      (display disk space with partitions)
+
+free (see memory used)
+free -g (in gigabytes)</code></pre>
+<h1 id="processes">Processes</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<pre><code>ps -ef | more       (current running processes)
+ps -efH | more      (current running processes in a tree)
+
+ps -ef | grep vim   (find vim process id)
+kill -9 &lt;id&gt;        (no brackets)</code></pre>
+<h1 id="bash">Bash</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Bash is my shell of choice, which is why I have a <code>.bashrc</code> file.</p>
+<h3 id="bash-paths">Bash Paths</h3>
+<p>Executables and commands are automatically in the path, see your path with:</p>
+<pre><code>echo $PATH</code></pre>
+<h3 id="add-to-path">Add to Path</h3>
+<pre><code># I suggest editing your ~/.profile
+
+vim ~/.profile
+if [ -d "/path/to/your/bin" ] ; then
+  PATH="$PATH:/path/to/your/bin"
+fi</code></pre>
+<p><em>Note: Order of Linux Reading files: ~/.bash_profile, ~/.bash_login, and ~/.profile, so don't try to use a ~/.profile variable within ~/.bash_profile</em></p>
+<h3 id="bash-completions">Bash Completions</h3>
+<p>The locations for bash completio0ns can be found at:</p>
+<pre><code>cd /usr/share/bash-completion/completions.d/
+cd /etc/bash_completions.d/</code></pre>
+<h3 id="fix-broken-bash-completions">Fix Broken Bash Completions</h3>
+<pre><code>sudo apt-get install --reinstall bash-completion</code></pre>
+<h3 id="log-script-from-bash">Log Script from Bash</h3>
+<p>At the top of your file, find the executable you are using one of these, eg:</p>
+<pre><code>which bash     # /usr/bin/bash
+which python   # /usr/bin/python
+which php      # /usr/bin/php</code></pre>
+<p>At the top of your <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> for the executable file add:</p>
+<pre><code>#!/bin/bash
+#!/usr/bin/php
+#!/usr/bin/python</code></pre>
+<p>make sure to <code>+x</code> it:</p>
+<pre><code>chmod +x app.sh
+chmod +x app.php
+chmod +x app.py</code></pre>
+<p>You can then run the script via Bash:</p>
+<pre><code>/scripts/app.sh &gt;&gt; /scripts/output.log 2&gt;&amp;1
+/scripts/app.php &gt;&gt; /scripts/output.log 2&gt;&amp;1
+/scripts/app.py &gt;&gt; /scripts/output.log 2&gt;&amp;1</code></pre>
+<p>You could even crontab it the same way:</p>
+<pre><code>*/10 * * * * app.php &gt;&gt; /output.log 2&gt;&amp;1
+*/10 * * * * app.py &gt;&gt; /output.log 2&gt;&amp;1</code></pre>
+<h1 id="finding-files">Finding Files</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Generally the following arguments are as follows:</p>
+<ul>
+<li><code>-type f</code> file</li>
+<li><code>-type d</code> directory</li>
+<li><code>-iname</code> case insensistive (book.txt would the same as BOOK.TXT)</li>
+<li><code>*</code> is a wildcard to find anything, usually you put it at the start or end of a filename.
+<pre><code>find . -name tecmint.txt
+find /home -name tecmint.txt
+find /home -iname tecmint.txt                        (case ignore)
+find / -type d -name Tecmint                         (directory)
+find . -type f -perm 0777 -print (with perms)
+find / -type f ! -perm 777 (find without)
+find . -type f -name "tecmint.txt" -exec rm -f {} \; (find and remove a file)
+find . -type f -name "*.txt" -exec rm -f {} \;       (find and remove multiple)
+find /tmp -type f -empty                             (Find empty files)
+find /tmp -type d -empty                             (find empty directories)
+find / -size +50M -size -100M (findby swize)</code></pre></li>
+</ul>
+<h1 id="find-in-files-grep">Find in Files (GREP)</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>GREP means: Global Regular Expression Pattern (or Parser)</p>
+<p>Some common GREP flags:</p>
+<ul>
+<li><code>-r</code> is Recursive</li>
+<li><code>-n</code> is Line Number</li>
+<li><code>-w</code> Match the whole word</li>
+<li><code>-l</code> is lowercase only</li>
+<li><code>-c</code> supresses normal output and counts number of matching lines</li>
+</ul>
+<pre><code>grep -rn /path - "pattern_or_string"
+
+; Output results to File
+grep -rnw /path - "pattern_or_string" &gt; output.txt</code></pre>
+<p>Look only in certain filetypes</p>
+<pre><code>; notice I used a regex ^ starts with, you can use a string or regex
+grep --include=*.sh '^mysql' ./</code></pre>
+<p>More Examples:</p>
+<pre><code>grep "hello" file.txt (if in file)
+grep "hello" files*  (if in many files)
+grep -i "hello"  file.txt  (case insesitive)
+grep -iw "is" file.txt (get full words, case insensitive)
+grep "regex" file.txt</code></pre>
+<h3 id="pipe-grep">Pipe Grep</h3>
+<pre><code>php -i | grep ini</code></pre>
+<h1 id="reading-files">Reading Files</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Without having to open a file you can simply read a part of it without <code>nano</code>, <code>pico,</code>vi<code>, or</code>vim`:</p>
+<pre><code>cat file.txt            (view file contents)
+tail file.txt           (view end of file contents)
+tail -n20 file.txt      (view top 20 lines)
+tail -f filetxt         (follow a filename keep updating)
+head file.txt           (view top of file contents)
+head -n20 file.txt      (view top 20 lines)</code></pre>
+<h1 id="downloading-files">Downloading Files</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<h3 id="using-wget">Using Wget</h3>
+<pre><code>wget http://file.com/something.txt                (Download a file locally)
+wget -O newname.txt http://file.com/something.txt (Download file locally w/new name)</code></pre>
+<p>You can also use <code>SCP</code>, yet the above are easier for non-SSH connections.</p>
+<h3 id="using-curl">Using cURL</h3>
+<pre><code>curl -O http://file.com/something.txt               (Download a file locally)
+curl -o newname.txt http://file.com/something.txt   (Download file locally w/new name)
+curl -O http://url_1 -O http://url_2                (Download multiple files)</code></pre>
+<h1 id="compressing-and-uncompressing-files">Compressing and Uncompressing Files</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>To Compress a file you can use a variety of tools. You can type <code>man gzip</code> to see the full manual and line of commands, and use <code>esc</code> + <code>:x</code> and <code>ENTER</code> to exit from the Manual (It usually uses the Vi editor).</p>
+<p>Most often in the Linux word you use and create <code>*.tar.gz</code> files, it has the most options. Whatever you prefer is up to you.</p>
+<p>What the flags often stand for:</p>
+<ul>
+<li><code>-c</code> is create</li>
+<li><code>-f</code> is file</li>
+<li><code>-k</code> is for Keep
+<ul>
+<li><code>gzip</code> &amp; <code>bzip2</code> will remove the original file once compressed</li>
+<li>Or they will remove the <code>.gz</code> when decompressing is done</li>
+</ul></li>
+<li><code>-r</code> is recursive (for gzip and zip)</li>
+<li><code>-v</code> is verbose (show details of what's happening)</li>
+<li><code>-z</code> is for tar to gzip as well</li>
+<li><code>--exclude='file'</code> is for tar (+gz if needed) to exclude certain files)</li>
+</ul>
+<h3 id="compressing-files">Compressing Files</h3>
+<p>Note: You can compress more than one file at a time eg: <code>bzip2 file1.txt file2.txt file3.txt</code></p>
+<pre><code>gzip -vk file.txt                   (Creates file.txt.gz)
+bzip2 file.txt                      (Creates  file.txt.bz2)
+tar -cvf file.tar file.txt          (Creates tar)
+tar -czvf file.tar.gz file.txt      (Creates tar.gz)
+zip filename.zip file.txt           (Creates filename.zip)
+zip -r folder.zip path/to/folder    (Creates  folder.txt.bz2)</code></pre>
+<p>Include/Exclude a few files:</p>
+<pre><code>; Exclude certain files
+tar -czvf file.tar.gz &lt;directory&gt;/ --exclude='*.jpg' --exclude='bigfile.sql'
+
+; Include one file type
+tar -czvf file.tar.gz &lt;directory&gt;/*.sh
+
+; Include multiple files types
+tar -czvf file.tar.gz `find &lt;directory&gt; | grep '.sh\|.py'`</code></pre>
+<h3 id="decompressing-files">Decompressing Files</h3>
+<p>To Uncompress we use similar commands for most of them</p>
+<pre><code>gunzip -dvk file.txt.gz
+gzip -dvk file.txt.gz       (Same as above)
+bzip2 -d file.txt.bz2
+tar -xvf file.tar
+tar -zxvf file.tar.gz
+unzip test.zip</code></pre>
+<h1 id="scp">SCP</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<h3 id="download-from-server-to-local">Download from server to local</h3>
+<pre><code>scp root@server.com:/path/to/file.txt file.txt</code></pre>
+<h3 id="upload-from-local-to-server">Upload from local to server</h3>
+<pre><code>scp file.txt root@server.com:/path/to/file.txt</code></pre>
+<h1 id="ssh">SSH</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<h3 id="connecting-to-a-server">Connecting to a server</h3>
+<pre><code>ssh name@server.com  (default port is 22)
+ssh name@server.com -p 8000 (connect to specific port)
+ssh name@server.com -i ~/.ssh/rsa_key.pub (connect with ssh key)</code></pre>
+<h3 id="ssh-permissions">.SSH Permissions</h3>
+<p>These are safe permissions to use for SSH</p>
+<pre><code>chmod 700 ~/.ssh
+chmod 644 ~/.ssh/id_rsa.pub
+chmod 600 ~/.ssh/id_rsa
+
+# Put your pubkeys (one per line) for SSH login
+chmod 600 ~/.ssh/authorized_keys</code></pre>
+<h3 id="using-the-config">Using the Config</h3>
+<p>You can also create a <code>~/.ssh/config</code> file and store entries such as:</p>
+<pre><code>Host aws
+Hostname ec2-50-50-130-50.compute-1.amazonaws.com
+Port 22
+Identityfile ~/.ssh/id_rsa
+User myusername
+
+Host my-vps
+Hostname 50.50.130.50
+Port 22
+User root</code></pre>
+<p>You can then simply type:</p>
+<pre><code>ssh aws
+ssh my-vps</code></pre>
+<h1 id="firewall">Firewall</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>A firewall prevents unauthorized access to your machine, you should use <code>UFW</code> (Uncomplicated Firewall). You must always run this with <code>sudo</code>. If you don't have UFW installed, run:</p>
+<pre><code>sudo apt-get install ufw</code></pre>
+<h3 id="ufw-status">UFW Status</h3>
+<p>To see the Firewall Status run one of these:</p>
+<pre><code>sudo ufw status
+sudo ufw status verbose</code></pre>
+<h3 id="ufw-enabledisable">UFW Enable/Disable</h3>
+<pre><code>sudo ufw enable
+sudo ufw disable</code></pre>
+<h3 id="ufw-example-customization">UFW Example Customization</h3>
+<p>Please do not do this unless you know what you are doing.</p>
+<p>You could start out with blocking all incoming connections.</p>
+<pre><code>sudo ufw default deny incoming
+sudo ufw default allow outgoing</code></pre>
+<p>Then we allow only what we want</p>
+<pre><code>sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw allow ftp</code></pre>
+<p>These are the same as:</p>
+<pre><code>sudo ufw allow 22   # same as ssh
+sudo ufw allow 80   # same as http
+sudo ufw allow 443  # same as https</code></pre>
+<h3 id="ufw-more-options">UFW More Options</h3>
+<p>If SSH was on port <code>3333</code> rather than the default <code>22</code> you would do:</p>
+<pre><code>sudo ufw allow 3333/tcp</code></pre>
+<p>Some more options:</p>
+<pre><code>sudo ufw allow 25 # SMTP
+sudo ufw allow 110 # POP3
+sudo ufw allow 995 # POP3S
+sudo ufw allow 143 # IMAP
+sudo ufw allow 993 # IMAPS
+sudo ufw allow 3306 # MySQL
+sudo ufw allow 5432 # Postgres
+sudo ufw allow from 192.168.255.255 # Custom IP Address</code></pre>
+<h3 id="ufw-deleting-rules">UFW Deleting Rules</h3>
+<p>Easily delete named rules</p>
+<pre><code>sudo ufw delete allow ssh</code></pre>
+<p>Delete rules that are numbered</p>
+<pre><code>sudo ufw status numbered
+sudo ufw delete [number]</code></pre>
+<h3 id="ufw-reset-rules">UFW Reset Rules</h3>
+<pre><code>sudo ufw reset</code></pre>
+<h1 id="regex">Regex</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Regex stands for Regular Expression. It's used for locating or replacing files or
+strings of text. It is used all the time. These can be used in Linux itself and programming
+languages.</p>
+<pre><code>; Symbolism
+; ------------------
+()          (captures groups)
+[]          (set)
+{}          (quantifier)
+?           (optional, matches 0 or 1 character)
+*           (matches 0 or more characters)
+.           (match any character)
++           (match one or more character)
+\           (escape character)
+!           (false, is not)
+^           (starts with)
+$           (ends with)
+|           (or statement, eg: (jesse|dan|jenkins) )
+
+; Basic Primer
+; ------------------
+\w          (word)
+\W          (non-word)
+\s          (whitespace)
+\S          (non-whitespace)
+\d          (digit)
+\D          (non-digit)
+[ab]        (character set)
+[^ab]       (negated set)
+[a-m]       (range)
+(hello)     (group)
+(hello)+    (group, more than once)
+
+; Groups
+; ------------------
+(hi)        (gets all "hi" occurances)
+(^hi)       (gets all text starting with "hi")
+(es$)       (gets all text ending with "es")
+(hi)\1      (gets the first occurance of "hi")
+
+; Flags
+; ------------------
+/i          (case insensitive)
+/g          (global)
+/m          (multiline)
+
+; Escaped Characters
+; ------------------
+; Since characters such as ".", "+", etc are actual Regex pattern makers, if you
+; need to check your content for the literal item you must escape them.
+\.          (matches . character)
+\+          (matches + character)
+\?          (matches ? character)
+\*          (matches * character)
+\^          (matches ^ character)
+\$          (matches $ character)
+\[          (matches [ character)
+\(          (matches ( character)
+
+\t          (matches tab character)
+\n          (matches newline)
+\r          (matches return carriage)
+\0          (matches NULL character)
+\\          (matches \ character)
+\/          (matches / character)</code></pre>
+<h3 id="regex-examples">Regex Examples</h3>
+<pre><code>Put Examples here, like phones, names, etc..
+</code></pre>
+<h1 id="mysql">MySQL</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<ul>
+<li><code>-u</code> is for User (default: root)</li>
+<li><code>-p</code> is for Password </li>
+<li><code>-p password</code> is for password which skips the prompt (not recommended)</li>
+<li><code>-h</code> is for host (default: localhost)</li>
+<li><code>-port or -P</code> is for a port, default is 3306</li>
+<li><code>-f</code> will force SQL import and skips errors</li>
+<li><code>-v</code> will display verbose output</li>
+<li>In the <code>mysql&gt;</code> terminal you can get clean data by doing <code>\g</code>:
+<ul>
+<li><code>mysql&gt; SELECT * FROM users LIMIT 10\g";</code></li>
+</ul></li>
+</ul>
+<h3 id="connecting">Connecting</h3>
+<pre><code>mysql -u root -p (username, password prompt)
+mysql -u root -p -h localhost (username, password prompt, host)
+mysql -u root -p password -h localhost -P 3306
+
+; AWS Example (AWS Defaults to 3306 as most MySQL connections do)
+mysql -u username -p password -h myinstance.123456789012.us-east-1.rds.amazonaws.com</code></pre>
+<h3 id="exporting-database-to-sql">Exporting Database to SQL</h3>
+<p>You can dump a single database easily:</p>
+<pre><code>mysqldump -u root -p DATABASE_NAME &gt; file.sql</code></pre>
+<p>Or Dump all databases on your MySQL server with the <code>--all-databases</code> flag:</p>
+<pre><code>mysqldump -u root -p --all-databases &gt; file.sql</code></pre>
+<h3 id="importing-sql-files">Importing SQL Files</h3>
+<p>You can do this through the shell only, or MySQL, first is the shell:</p>
+<pre><code>mysql -u root DATABASE_NAME &lt; path/to/file.sql</code></pre>
+<p>To continue when there are MySQL Errors use -f or --force below:</p>
+<pre><code>mysql -u root DATABASE_NAME &lt; path/to/file.sql --force</code></pre>
+<p>To use a password, just pass in the -p flag and type it in after running:</p>
+<pre><code>mysql -u root -p DATABASE_NAME &lt; path/to/file.sql --force</code></pre>
+<p>Second, you can do it through MySQL once you connect:</p>
+<pre><code>mysql&gt; use DATABASE_NAME;
+mysql&gt; source path/to/file.sql;</code></pre>
+<h3 id="exporting-compressed-database">Exporting Compressed Database</h3>
+<p>This will save a lot of space in this one liner:</p>
+<pre><code>mysqldump -u root -p DATABASE_NAME | tar -cvzf &gt; output.sql.tar.gz
+mysqldump -u root -p DATABASE_NAME | gzip -v &gt; output.sql.gz</code></pre>
+<h3 id="importing-compressed-database">Importing Compressed Database</h3>
+<p>Here is how you can import with the one liner:</p>
+<pre><code>mysql -u root -p DATABASE_NAME | tar -xzOf output.sql.tar.gz
+mysql -u root -p DATABASE_NAME | gunzip &lt; output.sql.gz</code></pre>
+<h1 id="git">Git</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<h3 id="populate-a-repository">Populate a Repository</h3>
+<p>You have to first create a repostory, through BitBucket, GitHub, GitLab, etc.</p>
+<pre><code>git init
+touch README.md
+git remote add origin git@github.com/username/yourrepo.git
+git add .
+git commit -m "Starting with one file"
+git push origin master</code></pre>
+<h3 id="add-or-remove-files">Add or Remove Files</h3>
+<pre><code>git add file.txt
+git rm file.txt</code></pre>
+<h3 id="ignoring-files">Ignoring files</h3>
+<p>Create a <code>.gitignore</code> file, and place something like this in it:</p>
+<pre><code>.tmp
+.py[co]
+.cache
+.DS_Store</code></pre>
+<h3 id="create-a-branch">Create a Branch</h3>
+<p>Branches are used like when you don't want to ruin a main branch with working code.</p>
+<pre><code>git checkout -b develop
+git push origin develop</code></pre>
+<h3 id="switch-branches">Switch Branches</h3>
+<pre><code>git checkout master
+git checkout develop</code></pre>
+<h3 id="pull-one-file-from-another-branch">Pull One File From Another Branch</h3>
+<p>If you were on your <code>master</code> branch and only wanted to pull a single file from <code>develop</code> branch, you can do this:</p>
+<pre><code>; Make sure you're on the branch you want to pull into
+git checkout master
+
+; Pull a single file into master from develop
+git checkout develop -- relative/path.txt
+
+; Continue by comitting and pushing to master</code></pre>
+<h3 id="create-a-tag">Create a Tag</h3>
+<p>Tags create a snapshots of current code, you may name it as a version such as <code>1.0.1</code> and it produces a <code>tar.gz</code> and <code>zip</code> format for downloads.</p>
+<pre><code>git tag -a 1.0
+git tag -a 1.0 -m "Optional Message"
+git push --tags</code></pre>
+<h3 id="remove-a-tag">Remove a Tag</h3>
+<p>This will remove a tag from the Git host.</p>
+<pre><code>git tag -d 1.0
+git push origin :refs/tags/1.0</code></pre>
+<h3 id="clone-a-respository">Clone a Respository</h3>
+<pre><code>git clone git@github.com/username:your_repo.git</code></pre>
+<p>Clone into current directory</p>
+<pre><code>git clone git@github.com/username:your_repo.git .</code></pre>
+<h3 id="current-status">Current Status</h3>
+<pre><code>git status</code></pre>
+<h3 id="commit-log-and-show">Commit Log and Show</h3>
+<p>To see log data and more details use the short or long commit ID.</p>
+<pre><code>git log
+git show eb7c86a5fbdc6c64df608f4c143c2718a100983b</code></pre>
+<h3 id="reset-hard">Reset Hard</h3>
+<p>This will reset your repository to the last revision and undo everything, use with caution.</p>
+<pre><code>git reset --hard HEAD</code></pre>
+<h3 id="prune">Prune</h3>
+<p>Removes cached items no longer read by git</p>
+<pre><code>git prune</code></pre>
+<h1 id="docker">Docker</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>To install visit <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/"><a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">https://docs.docker.com/engine/installation/linux/ubuntulinux/</a></a></p>
+<ul>
+<li><strong>Images</strong>: (Blueprints of an application)
+<ul>
+<li><strong>Image BASE</strong>: No parent Image (An OS)</li>
+<li><strong>Image CHILD</strong>: Builds on a Base Image (Eg: Webserver, MySQL)</li>
+</ul></li>
+<li><strong>Containers</strong>: Created from an IMAGE and run an application.</li>
+<li><strong>Docker Daemon</strong>: Background service that builds, runs, and does everything.</li>
+<li><strong>Docker Client</strong>: Allows us to interact with the Docker Daemon.</li>
+<li><strong>Docker Hub</strong>: A registry of images (Like: npmjs, pip, packagist, bower)</li>
+</ul>
+<h3 id="docker-compose">Docker Compose</h3>
+<p>This is a great utility that makes managing docker easier from a <code>docker-compose.yml</code> file, you should install this after playing around with the below options. See: <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/"><a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">https://docs.docker.com/engine/installation/linux/ubuntulinux/</a></a></p>
+<pre><code>docker-compose up
+open http://localhost:3000</code></pre>
+<h3 id="test-box-run">Test Box Run</h3>
+<p>This is a sample box to test once you installed docker</p>
+<pre><code>dock pull busybox
+docker images
+docker run busybox "Hi from the box"</code></pre>
+<h3 id="see-running-containers">See Running Containers</h3>
+<pre><code>docker ps (running containers)
+docker ps -a (see all containers that ran)</code></pre>
+<h3 id="run-container-interactively">Run Container Interactively</h3>
+<p>This allows you to get inside the container</p>
+<pre><code>docker run -it busybox sh (interactive)</code></pre>
+<h3 id="remove-container">Remove Container</h3>
+<p>Removes a CONTAINER, not an IMAGE</p>
+<pre><code>docker ps -a
+docker rm &lt;CONTAINER ID&gt;</code></pre>
+<h3 id="bulk-remove-containers">Bulk Remove Containers</h3>
+<p>You can remove containers based on their status in bulk, eg:</p>
+<pre><code>docker rm $(docker ps -a -q -f status=exited)
+docker rm $(docker ps -a -q -f status=created)</code></pre>
+<h3 id="webserver-test-image">Webserver Test Image</h3>
+<p>This will download the IMAGE and run it if it doesn't exist</p>
+<pre><code>docker run prakhar1989/static-site</code></pre>
+<p>This doesn't expose ports for us to use, so we do the following:</p>
+<pre><code>docker run -d -P --name static-site prakhar1989/static-site</code></pre>
+<ul>
+<li><code>-d</code> detaches terminal so we can run commands in our terminal</li>
+<li><code>-P</code> publishes all exposed ports to random ports</li>
+</ul>
+<p>By doing the above command we are given random ports, eg:</p>
+<pre><code>  443/tcp -&gt; 0.0.0.0:32768
+  80/tcp -&gt; 0.0.0.0:32769</code></pre>
+<p>Your ports may be different, you can use specific ports with a lowercase <code>-p</code>:</p>
+<pre><code>docker run -p 8888:80 prakhar1989/static-site</code></pre>
+<h3 id="stop-container">Stop Container</h3>
+<pre><code>docker stop static-site</code></pre>
+<h3 id="get-new-docker-image">Get New Docker Image</h3>
+<p>This would be a docker BASE IMAGE</p>
+<pre><code>docker pull ubuntu:14.04</code></pre>
+<h3 id="create-docker-image">Create Docker Image</h3>
+<p>This is a flask Example using a Python-3 Base IMAGE</p>
+<ul>
+<li>Create <code>requirements.txt</code> and just put <code>flask</code></li>
+<li>Create an <code>app.py</code></li>
+<li>Use the following sample code in <code>app.py</code>:</li>
+</ul>
+<pre><code>from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'</code></pre>
+<ul>
+<li>Create a docker file, title it <code>Dockerfile</code></li>
+<li>Enter the following</li>
+</ul>
+<pre><code>FROM python:3-onbuild
+EXPOSE 5000
+CMD ["python", "./app.py"]</code></pre>
+<p>Now build the image</p>
+<pre><code>docker build -t boyus .
+docker images</code></pre>
+<h3 id="remove-docker-image">Remove Docker Image</h3>
+<p>Get a list of images, then just delete by image id with <code>rmi</code> aka <code>remove image</code>:</p>
+<pre><code>docker images
+docker rmi &lt;IMAGE ID&gt;</code></pre>
+<h3 id="pushing-images">Pushing Images</h3>
+<p>You need a repository at docker.io to push this, or probably some private hosting.</p>
+<pre><code>docker push boyus</code></pre>
+<h1 id="installing-guis">Installing GUI's</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Linux has a lot of GUI's and you are not limited to what you get. I'll list a few popular ones with the installation instructions in Ubuntu. You can have as many GUI options as you like, just change the default at the login screen.</p>
+<blockquote>
+<p>Tip: After you install, logout and in the login menu or the top right you can select what GUI you want to login with. Whenever you install a new GUI you can select a Display Manager, I recommend using <code>lightdm</code>. </p>
+</blockquote>
+<p>--</p>
+<h3 id="unity">Unity</h3>
+<p><a href="https://unity.ubuntu.com/"><strong>Unity Website</strong></a></p>
+<pre><code>Installed in Ubuntu 12+ by Default (`ubuntu-desktop`)</code></pre>
+<h3 id="xubuntu">XUbuntu</h3>
+<p><a href="https://xubuntu.org/"><strong>XUbuntu Website</strong></a></p>
+<pre><code>; Install:
+sudo apt-get install xubuntu-desktop
+
+; Remove: 
+sudo apt-get remove xubuntu-desktop</code></pre>
+<h3 id="cinnamon-linux-mint">Cinnamon (Linux Mint)</h3>
+<p><a href="https://www.linuxmint.com/"><strong>Linux Mint Website</strong></a></p>
+<pre><code>; Install:
+sudo add-apt-repository ppa:moorkai/cinnamon
+sudo apt-get update &amp;&amp; sudo apt-get install cinnamon
+
+; Remove
+sudo ppa-purge ppa:moorkai/cinnamon</code></pre>
+<h3 id="gnome">GNOME</h3>
+<p><a href="https://www.gnome.org"><strong>GNOME Website</strong></a></p>
+<p>This has been one of the all time most popular GUI's for Linux ever made, in particular the <code>gnome-classic</code>.</p>
+<pre><code>; Install:
+sudo apt-get install ubuntu-gnome-desktop    (For legacy gnome use you can use gnome-shell, this install both)
+
+; Remove: 
+sudo apt-get remove ubuntu-gnome-desktop     (Removes gnome-shell as well)</code></pre>
+<blockquote>
+<p>Gnome3 has been my favorite GUI due to how I can customize it. However, for unknown reasons I have issues running only Gnome3 in VMWare Workstation 11. It works fine as a complete install. </p>
+</blockquote>
+<p>Noteworthy: Visit <a href="https://extensions.gnome.org/">Gnome Shell Extensions</a> to customize anything you want. Make sure to use Firefox.</p>
+<h3 id="kde">KDE</h3>
+<p><a href="https://www.kde.org/"><strong>KDE Website</strong></a></p>
+<p>This is a very popular GUI for people that are used to Windows Desktops.</p>
+<pre><code>; Install:
+sudo add-apt-repository ppa:kubuntu-ppa/backports
+sudo apt-get update &amp;&amp; sudo apt-get dist-upgrade
+sudo apt-get install kubuntu-desktop
+
+; Remove: 
+sudo apt-get remove kubuntu-desktop</code></pre>
+<h3 id="lxqt">LXQT</h3>
+<p><a href="http://lxqt.org/"><strong>LXQT Website</strong></a></p>
+<pre><code>; Install:
+sudo apt-get install lxqt
+; Remove: 
+sudo apt-get remove lxqt</code></pre>
+<h3 id="pantheon-elementaryos">Pantheon (ElementaryOS)</h3>
+<p><a href="https://elementary.io/"><strong>Elementary OS Website</strong></a> </p>
+<p>For the best stability I use Elementary OS which is based off of Ubuntu.</p>
+<pre><code>; Install:
+sudo add-apt-repository ppa:elementary-os/stable
+sudo apt-get update
+sudo apt-get install elementary-desktop
+
+; Remove: 
+sudo apt-get remove elementary-desktop</code></pre>
+<h3 id="xfce">XFCE</h3>
+<p><a href="http://www.xfce.org/"><strong>XFCE Website</strong></a></p>
+<pre><code>; Install:
+sudo apt-get install xfce4
+
+; Remove: 
+sudo apt-get remove xfce4</code></pre>
+<h1 id="troubleshooting">Troubleshooting</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<p>Sometimes the system has problems, seldmoly but I'll list things that helped me fix rare occasions.</p>
+<h3 id="ubuntu-infinite-login">Ubuntu Infinite Login</h3>
+<p>When you try to login to Ubuntu and it relogs you back into the login screen, this is an infinite loop. The only way I was able to fix it depsite all the guides was combining a few of these together for Ubuntu 16.04. </p>
+<p>If you are using Gnome as I do, I would jump down to the <strong>Apt Auto Remove Problem</strong> in the list.</p>
+<p>The first step is to login to a terminal.</p>
+<pre><code>CTRL + ALT + F1  (Or F3)</code></pre>
+<p>Next, Login as your user who must be able to run <code>sudo</code>.</p>
+<ul>
+<li><strong>Temp Folder Permissions</strong>
+<ul>
+<li><code>ls -ld /tmp</code> should have these permission exactly as: <code>drwxrwxrwt</code></li>
+<li>The user:group must be <code>root:root</code> on <code>/tmp</code>.</li>
+<li>To Fix: <code>sudo chmod a+wt /tmp</code></li>
+</ul></li>
+<li><strong>Xauthority Ownership</strong>
+<ul>
+<li><code>ls -lta | grep .Xa</code> should be owned by your user, for example <code>jesse jesse</code></li>
+<li>If it is <code>root root</code> or anything than your user/group it's wrong.</li>
+<li>To Fix: <code>sudo chown jesse:jesse .Xauthority</code></li>
+</ul></li>
+<li><strong>Xsession Errors</strong>
+<ul>
+<li>This is just to make sure there are no syntax errors for your reference:</li>
+<li>To Check: <code>cat ~/.xsession-errors</code></li>
+<li>You don't need to do anything if there are syntax errors, we will move the file.</li>
+</ul></li>
+<li><strong>Try Moving XAuthority</strong>
+<ul>
+<li>Sometimes it's as easy to moving Xauthority so a new is generated at login.</li>
+<li>To Fix: <code>sudo ~/.Xauthority ~/.Xauthority.bkup</code></li>
+</ul></li>
+<li><strong>Try Reconfiguring LightDM</strong>
+<ul>
+<li>Fix: <code>dpkg-reconfigure lightdm</code>, then select lightdm in the menu</li>
+<li>Lastly restart lightdm: <code>sudo service lightdm restart</code></li>
+</ul></li>
+<li><strong>Apt Auto Remove Problem</strong>
+<ul>
+<li>I read that it's possible <code>apt-autoremove</code> may accidentally remove <code>xubuntu-desktop</code>, <code>ubuntu-desktop</code> and LightDM reports no errors.</li>
+<li>The <code>ubuntu-desktop</code> will load the Unity interface</li>
+<li>The <code>xubuntu-desktop</code> will load a different interface I'm not familiar with.</li>
+<li>To Fix: <code>sudo apt-get install xubuntu-desktop ubuntu-desktop</code></li>
+<li><strong>If you are using Gnome</strong>, try following the post at <a href="http://www.omgubuntu.co.uk/2016/05/install-gnome-3-20-ubuntu-16-04-lts">OMGUbuntu</a></li>
+<li>After the Above Try: <code>sudo apt-get autoremove gnome-software &amp;&amp; sudo apt-get install gnome-software</code></li>
+<li>I was able to get Gnome-Classic working but not Gnome.</li>
+</ul></li>
+<li><strong>How to Ensure it Works</strong>
+<ul>
+<li>You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.    </li>
+</ul></li>
+</ul>
+<h1 id="linux-facts">Linux Facts</h1>
+<hr />
+<p><a href="#table-of-contents">(Back to Top)</a></p>
+<ul>
+<li><strong>Linux Versions</strong> refers to The Kernel which ties the OS together.</li>
+<li><strong>Linux Distributions</strong> are the named Linux &quot;Flavors&quot; below.
+<ul>
+<li><strong>Debian</strong></li>
+<li><strong>Linux Mint</strong> (LMDE) forked from Debian</li>
+<li><strong>Ubuntu</strong> forked from Debian
+<ul>
+<li><strong>Elementary OS</strong> forked from Ubuntu</li>
+<li><strong>Linux Mint</strong> forked from Ubuntu</li>
+<li><strong>Kubuntu</strong> forked from Ubuntu</li>
+</ul></li>
+<li><strong>Fedora</strong></li>
+<li><strong>Red Hat Enterprise Linux</strong> (RHEL) forked from Fedora
+<ul>
+<li><strong>CentOS</strong> forked from RHEL (Community Edition of RHEL)</li>
+</ul></li>
+<li><strong>Gentoo</strong></li>
+</ul></li>
+<li>..And many others. Debian -&gt; Ubuntu has been the most popular.</li>
+</ul>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
+        <!-- Livereload -->
+        <script>
+            document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
+                    ':35729/livereload.js?snipver=1"></' + 'script>')
+        </script>
+        <!-- End Livereload -->
+    </body>
+</html>
