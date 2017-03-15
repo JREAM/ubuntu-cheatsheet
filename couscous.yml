@@ -1,0 +1,20 @@
+template:
+    url: https://github.com/CouscousPHP/Template-Light.git
+
+baseUrl: https://jream.github.io/ubuntu-cheatsheet/a
+
+title: Ubuntu Cheatsheet
+subtitle: Quick Help for the Terminal
+
+github:
+  user: jream
+  repo: ubuntu-cheatsheet
+
+menu:
+  items:
+    home:
+      text: Home
+      relativeUrl:
+    find:
+      text: Find
+      relativeUrl: docs/find
