@@ -78,6 +78,10 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Importing SQL Files](#importing-sql-files)
     - [Exporting Compressed Database](#exporting-compressed-database)
     - [Importing Compressed Database](#importing-compressed-database)
+    - [Get Database Encoding](#get-database-encoding)
+    - [Get Table Encoding](#get-table-encoding)
+    - [Get Column Encoding](#get-column-encoding)
+    - [Fix Broken Characters](#fix-broken-characters)
 - [Git](#git)
     - [Populate a Repository](#populate-a-repository)
     - [Add or Remove Files](#add-or-remove-files)
@@ -1070,6 +1074,36 @@ Here is how you can import with the one liner:
 ```
 mysql -u root -p DATABASE_NAME | tar -xzOf output.sql.tar.gz
 mysql -u root -p DATABASE_NAME | gunzip < output.sql.gz
+```
+ 
+### Get Database Encoding
+```
+USE DATABASE_NAME;
+SELECT @@collation_database;
+```
+### Get Table Encoding
+```
+SELECT default_character_set_name FROM information_schema.SCHEMATA 
+WHERE schema_name = "TABLE_NAME";
+```
+
+### Get Column Encoding
+Look at the collation table. Numeric fields won't have a collation.
+```
+SHOW FULL COLUMNS FROM TABLE_NAME
+```
+
+### Fix Broken Characters
+
+First, try this query without affecting anything to see:
+```
+SELECT CONVERT(BINARY CONVERT('Weâ€™re Here!' using latin1) using utf8);
+```
+That should fix the encoding problem.
+
+To update a column:
+```
+UPDATE TABLE_NAME SET COLUMN_NAME = CONVERT(BINARY CONVERT(COLUMN_NAME using latin1) USING utf8);
 ```
 
 # Git
