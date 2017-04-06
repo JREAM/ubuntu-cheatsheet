@@ -34,6 +34,10 @@ This covers a wide assortment of quick references for the terminal/command-line.
 - [OS Shutdown](#os-shutdown)
 - [Crontab](#crontab)
 - [Services](#services)
+    - [Autostart](#autostart)
+    - [Remove Autostart](#remove-autostart)
+    - [Autostart Daemons](#autostart-daemons)
+    - [SystemD Commands](#systemd-commands)
 - [System State](#system-state)
 - [Processes](#processes)
 - [Bash](#bash)
@@ -452,9 +456,73 @@ crontab -u jesse -l     (see crontabs for specific user)
 # Services
 ***
 [(Back to Top)](#table-of-contents)
+
+## Service Commands
+Use the service command *(Requires sudo)*
 ```
 service ssh status      (service status)
 service --status-all    (all services status)
+```
+
+
+Almost every service has the following commands, some may have more like apache `graceful-restart`:
+```
+service servicename start
+service servicename stop
+service servicename restart
+service servicename status
+service servicename force-reload
+```
+
+## Autostart
+
+Add Service links:
+```
+sudo update-rc.d servicename defaults
+```
+
+Whether you get a warning if they already exist or not, enable it now:
+```
+sudo update-rc.d servicename enable
+```
+
+## Remove Autostart
+Pass the Force flag
+```
+sudo update-rc.d -f servicename remove
+```
+
+
+## Autostart Daemons
+
+There is are several startup popular daemons: 
+- CentOS uses SystemV 
+- Ubuntu 14 uses Upstart
+- Ubuntu 14.10+ uses SystemD (15, 16, 17..)
+
+Focus on **SystemD**. 
+
+## SystemD Commands
+This would only apply to Ubuntu 14.10+, otherwise you would use Upstart.
+
+```
+systemctl     <-- You'll use this more often 
+journalctl    <-- You'll use this more often
+update-rc.d   <-- You'll use this more often
+                  --------------------------
+                  Installs/Removes System-V style init script links
+                  Note: System-V Style, but it's really SystemD. (Confusing huh?)
+
+                  "NNname" is the runlevel, lower means startup sooner
+                  ----------------------------------------------------
+                  The Location is: /etc/rcrunlevel.d/NNname  
+                  The Target is:   /etc/init.d/name.
+notify 
+analyze 
+cgis 
+cgtop 
+loginctl 
+nspawn
 ```
 
 # System State
