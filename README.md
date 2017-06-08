@@ -63,6 +63,7 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Connecting to a server](#connecting-to-a-server)
     - [SSH Permissions](#ssh-permissions)
     - [Using the Config](#using-the-config)
+    - [SSH to PEM](#ssh-to-pem) 
 - [Firewall](#firewall)
     - [UFW Status](#ufw-status)
     - [UFW Enable/Disable](#ufw-enabledisable)
@@ -841,6 +842,13 @@ You can then simply type:
 ```
 ssh aws
 ssh my-vps
+```
+
+### SSH to PEM
+Sometimes you may need a `PEM` format SSH Key. You can easily add this alongside your other SSH keys.
+```
+openssl rsa -in ~/.ssh/keyname_rsa -outform pem > keyname_rsa.pem
+chmod 700 keyname_rsa.pem
 ```
 
 # Firewall
