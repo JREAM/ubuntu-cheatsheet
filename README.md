@@ -63,7 +63,7 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Connecting to a server](#connecting-to-a-server)
     - [SSH Permissions](#ssh-permissions)
     - [Using the Config](#using-the-config)
-    - [SSH to PEM](#ssh-to-pem) 
+    - [SSH to PEM](#ssh-to-pem)
 - [Firewall](#firewall)
     - [UFW Status](#ufw-status)
     - [UFW Enable/Disable](#ufw-enabledisable)
@@ -98,7 +98,7 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Reset Hard](#reset-hard)
     - [Prune](#prune)
 - [Docker](#docker)
-    - [Docker Compose](#docker-compose)  
+    - [Docker Compose](#docker-compose)
     - [Test Box Run](#test-box-run)
     - [See Running Containers](#see-running-containers)
     - [Run Container Interactively](#run-container-interactively)
@@ -123,137 +123,194 @@ This covers a wide assortment of quick references for the terminal/command-line.
     - [Ubuntu Infinite Login](#ubuntu-infinite-login)
 - [Linux Facts](#linux-facts)
 
-# Basics
+# Common Commands
 ***
 [(Back to Top)](#table-of-contents)
-```
-:x                  (Anytime you are in VIM, MAN page, LESS, etc, this is how you exit)
 
-whereis bash        (find absolute location of bash, or any file)
-whatis ls           (tells you about the command)
-man ls              (manual to give you a list of all command arguments for any command)
-locate crontab      (I like mlocate more)
-which python        (location of a program)
-clear               (dlears the terminal)
-date                (current datetime)
-echo                (output to terminal)
-env                 (See environment variables)
-hostname            (See your hostname)
-```
+| Command        | Description                                                        |
+|----------------|--------------------------------------------------------------------|
+| :q             | exits: MAN pages, VIM                                              |
+| clear          | dlears the terminal                                                |
+| date           | current datetime                                                   |
+| echo           | output to terminal                                                 |
+| echo -e        | output with variables and  escape characters.                      |
+| env            | See environment variables                                          |
+| hostname       | See your hostname                                                  |
+| locate crontab | I like mlocate more                                                |
+| man ls         | manual to give you a list of all command arguments for any command |
+| whatis ls      | tells you about the command                                        |
+| whereis bash   | find absolute location of bash                                     |
+| which python   | location of a program                                              |
 
 # Apt
 ***
 [(Back to Top)](#table-of-contents)
-Apt (Or Aptitude) is the package manager for Ubuntu to manage packages and remove them.
+
+Apt (Or Aptitude) is the **package manager** for Ubuntu to manage packages.
+
+> There are some alternatives worth noting such as AppImage files and Snap packages, but that is out of scope here.
 
 > Tip: You can use the `-y` flag in any apt command to skip the `[Y/n]` dialog.
 
 ### Apt Install
+
 You need super user permissions, or `sudo` before the command.
-To install packages, let's use an example such as ruby which should have a list of items.
+
+To install packages, let's use an example such as Ruby which should have a list of items.
+
+_@note: <TAB> means press the tab key_
+
+```sh
+sudo apt install rub<TAB><TAB>
+# You should see a list of ruby installables.
+# If it's a long list you can type this is exit:
+:q
 ```
-sudo apt-get install rub<TAB>  ; Press the tab key to see a list, type :q to exit the list
-sudo apt-get install ruby2.3
+
+```sh
+sudo apt install ruby2.3
 ```
+
+**TIP**: I like to add to my `~/.bashrc` file an alias for this as follows: `alias apt=sudo apt`
 
 ### Apt Update
-This updates the sources list located in `/etc/apt/sources.list.d/` which is where the OS knows where to download files from. You will do this time to time if it's been a while.
 
-```
-sudo apt-get update
+Update will get the latest versions of all repositories (and custom ones you add in the future) and allow you to install
+newer versions.
+
+- This lists are in: `/etc/apt/sources.list.d/`
+
+```sh
+apt update
 ```
 
 ### Apt Upgrade
+
 This will upgrade packages that have newer versions.
 
-```
-sudo apt-get upgrade
+```sh
+apt upgrade
+# or, auto accept
+apt upgrade -y
 ```
 
 ### Apt Remove
-Removing a package is quite simple. However, this will not remove configuration files, so if you were to re-install it they would be preserved. You would use `apt-get purge ruby2.3*` to purge all files.
+
+Removing a package is just as simple.
+
+```sh
+apt remove someprogram
+# or, auto accept
+apt remove someprogram -y
 ```
-sudo apt-get remove ruby2.3
+
+However, this will **not** remove configuration files, so if you were to re-install it they would be preserved.
+
+You may also run the following:
+
+```sh
+apt purge someprogram
 ```
 
 ### Apt Lock Error
-If you get an error such as `Unable to lock the administration directory (/var/lib/dpkg/) is another process`, follow these steps:
-- Make sure you are not logged in as another user running apt
-- Delete the lock and archive file files:
-  - `sudo rm /var/lib/apt/lists/lock`
-  - `sudo rm /var/cache/apt/archives/lock`
-  - `sudo dpkg --configure -a`
-- If nothing works, attempt rebooting the server
+
+If you get an error such as `Unable to lock the administration directory (/var/lib/dpkg/) is another process`, follow
+these steps:
+
+- When you haven't booted in a while, be patient as this is one of the first things Ubuntu might do based on schedule.
+  _~5 mins_
+- Ensure another user is not running apt by typing: `who`
+- See if this has many operation running: `ps aux | grep apt` (Should return one line, which has no results and just the
+  command you typed)
+- If you need to, delete the lock and archive files:
+  - `rm /var/lib/apt/lists/lock`
+  - `rm /var/cache/apt/archives/lock`
+  - `dpkg --configure -a`
+- If the above does not work. Reboot the OS.
+
+# File Manager
+
+- The default file manager is `nautilus`.
+- Access From terminaal: `nautilus .`
+- Otherwise press <kbd>SUPER</kbd> and type `files` to get to it.
+  - Set a Hotkey: <kbd>Settings</kbd>, <kbd>CTRL+F</kbd>, search for `keyboard` or `shortcut`.
+  - Change `Home Folder` to a hotkey of your choice, I prefer <kbd>SUPER + E</kbd> since I came from Windows.
 
 # Listing and Navigating
+
 ***
 [(Back to Top)](#table-of-contents)
 
-```
-; Navigating
-ls                  (list files)
-ls -la              (list all files, permissions, and hidden too)
-pwd                 (print working directory)
-cd ..               (go down a directory)
-cd /                (go to lowest level)
-cd ~                (go to logged in user's home)
-cd /var/www         (go to absolute path)
+| Command     | Description                                     |
+|-------------|-------------------------------------------------|
+| cd ..       | go down a directory                             |
+| cd /        | go to lowest level                              |
+| cd /var/www | go to absolute path                             |
+| cd ~        | go to logged in user's home                     |
+| ls          | list files                                      |
+| ls -la      | list all files, ~~permissions~~, and hidden too |
+| pwd         | print working directory                         |
 
-; Manage Files and Folders
-mkdir <dir>         (create a directory)
-rmdir <dir>         (remove an empty directory)
-rm -rf <dir>        (remove a directory with contents)
-touch <file>        (create an empty file)
-mv <file> <loc>     (move file from location to new location)
-cp <file> <loc>     (copy file from location to new location)
-mv <dir> <loc>      (move directory from location to new location)
-cp -R <dir> <loc>   (copy directory from location to new location)
+### Manage Files and Folders
 
-; Reading Files
-cat <file>          (read entire file)
-head <file>         (read top of a file)
-head <file> -n 20   (read top of file 20 lines)
-tail <file>         (read bottom of a file)
-tail <file> -n 20   (read bottom of file 20 lines)
-tail <file> -f      (stream file as it's updated, eg: an error log)
-```
+| Command           | Description                                  |
+|-------------------|----------------------------------------------|
+| cp -R <dir> <loc> | copy directory from location to new location |
+| cp <file> <loc>     | copy file from location to new | location |
+| mkdir <dir> | create a directory        |
+| mv <dir> <loc>      | move directory from location | to new location |
+| mv <file> <loc>     | move file from location to new | location |
+| rm -rf <dir>        | remove a directory with | contents |
+| rmdir <dir> | remove an empty directory |
+| touch <file>        | create an empty file |
+
+### Reading Files
+
+
+| Command           | Description               |
+|-------------------|---------------------------|
+| cat <file>        | read entire file          |
+| head <file>       | read top of a file        |
+| head <file> -n 20 | read top of file 20 lines |
+| tail <file>       | read bottom of a file     |
+| tail <file> -f      | stream file as it's updated, | eg: an error log |
+| tail <file> -n 20 | read bottom of file 20 lines |
 
 
 # Users
 ***
 [(Back to Top)](#table-of-contents)
 
-```
-su - username       (switch users)
-sudo su             (switch to root)
 
-passwd              (change logged in users password)
-passwd username     (change another users password)
-
-useradd -m -s /bin/bash username
-usermod -a -G existing_group existing_user
-
-who                 (show all logged in users)
-whoami              (show which user you are)
-```
+| Command                                    | Description                     |
+|--------------------------------------------|---------------------------------|
+| passwd                                     | change logged in users password |
+| su - username                              | switch users                    |
+| sudo su                                    | switch to root                  |
+| useradd -m -s /bin/bash username           | Create User                     |
+| usermod -a -G existing_group existing_user | Add User to Group               |
+| who                                        | show all logged in users        |
+| whoami                                     | show which user you are         |
 
 # Groups
 ***
 [(Back to Top)](#table-of-contents)
 
 Do not delete groups you don't know what they are used for, that's dangerous!
-```
-groups                      (see what groups current user belongs to)
-groupadd name               (create a group)
-groupadd -g 900 name        (create a group with custom GroupID aka gid)
 
-groupdel name               (delete a group)
-useradd <group>             (add current user to a group)
-usermod -aG <group> <user>  (append any user to an additional group)
 
-cat /etc/group              (list all groups)
-cut -d: -f1 /etc/group      (list all groups, cleaner)
-```
+| Command       | Description                             |
+|---------------|-----------------------------------------|
+| groups        | see what groups current user belongs to |
+| groupadd name | create a group                          |
+| groupadd -g 900 name        |create a group with | custom GroupID aka gid|
+|||
+|groupdel name               |delete a group|
+|useradd <group>             |add current user to a |group|
+|usermod -aG <group> <user>  |append any user to an |additional group|
+|||
+|cat /etc/group              | list all groups|
+|cut -d: -f1 /etc/group      | list all groups, cleaner|
 
 # Permissions
 ***
@@ -266,7 +323,7 @@ There are two ways to manage permissions, one is by text the other is by an octa
 ; Change Mode
 ; Options: (O)wner (U)sers (G)roup or (A)ll
 ; File:    Owner: rwx, Group: rwx, User: rwx
-; Misc:    Besides rwx there is: 
+; Misc:    Besides rwx there is:
 ;          s = setuid of owner for old/new files
 
 ; Single File read/write permissions
@@ -286,11 +343,11 @@ chmod -R g+s files_or_folder
 
 ### Preserve Group Permissions
 A fantastic way to structure your users is within groups. A common example would be your `www-data` group.
-If I have a user `jesse`, I can add him with `sudo usermod -aG www-data jesse`. 
+If I have a user `jesse`, I can add him with `sudo usermod -aG www-data jesse`.
 
 After adding any users I would like, I want to have a folder where all the members of the `www-data` group
 can read/write a folder. If they are using git, I also want the permissions to stay the same, meaning if they
-pull the permissions will not change. 
+pull the permissions will not change.
 
 To accomplish this, here is an example:
 ```
@@ -422,19 +479,19 @@ Without a kernal you cannot do anything on linux.
 
 ### Remove Old Kernals
 
-See What version you are currently using 
+See What version you are currently using
 ```
 sudo uname -a
 ```
 
 See all the Kernals on the OS
 ```
-sudo dpkg --get-selections | grep linux  
+sudo dpkg --get-selections | grep linux
 ```
 
 The BYOBU is quite nice
 ```
-sudo apt install byobu 
+sudo apt install byobu
 sudo purge-old-kernels
 ```
 
@@ -500,18 +557,18 @@ sudo update-rc.d -f servicename remove
 
 ## Autostart Daemons
 
-There is are several startup popular daemons: 
-- CentOS uses SystemV 
+There is are several startup popular daemons:
+- CentOS uses SystemV
 - Ubuntu 14 uses Upstart
 - Ubuntu 14.10+ uses SystemD (15, 16, 17..)
 
-Focus on **SystemD**. 
+Focus on **SystemD**.
 
 ## SystemD Commands
 This would only apply to Ubuntu 14.10+, otherwise you would use Upstart.
 
 ```
-systemctl     <-- You'll use this more often 
+systemctl     <-- You'll use this more often
 journalctl    <-- You'll use this more often
 update-rc.d   <-- You'll use this more often
                   --------------------------
@@ -520,13 +577,13 @@ update-rc.d   <-- You'll use this more often
 
                   "NNname" is the runlevel, lower means startup sooner
                   ----------------------------------------------------
-                  The Location is: /etc/rcrunlevel.d/NNname  
+                  The Location is: /etc/rcrunlevel.d/NNname
                   The Target is:   /etc/init.d/name.
-notify 
-analyze 
-cgis 
-cgtop 
-loginctl 
+notify
+analyze
+cgis
+cgtop
+loginctl
 nspawn
 ```
 
@@ -1018,7 +1075,7 @@ Put Examples here, like phones, names, etc..
 [(Back to Top)](#table-of-contents)
 
 - `-u` is for User (default: root)
-- `-p` is for Password 
+- `-p` is for Password
 - `-p password` is for password which skips the prompt (not recommended)
 - `-h` is for host (default: localhost)
 - `-port or -P` is for a port, default is 3306
@@ -1083,7 +1140,7 @@ Here is how you can import with the one liner:
 mysql -u root -p DATABASE_NAME | tar -xzOf output.sql.tar.gz
 mysql -u root -p DATABASE_NAME | gunzip < output.sql.gz
 ```
- 
+
 ### Get Database Encoding
 ```
 USE DATABASE_NAME;
@@ -1091,7 +1148,7 @@ SELECT @@collation_database;
 ```
 ### Get Table Encoding
 ```
-SELECT default_character_set_name FROM information_schema.SCHEMATA 
+SELECT default_character_set_name FROM information_schema.SCHEMATA
 WHERE schema_name = "TABLE_NAME";
 ```
 
@@ -1362,7 +1419,7 @@ docker push boyus
 
 Linux has a lot of GUI's and you are not limited to what you get. I'll list a few popular ones with the installation instructions in Ubuntu. You can have as many GUI options as you like, just change the default at the login screen.
 
-> Tip: After you install, logout and in the login menu or the top right you can select what GUI you want to login with. Whenever you install a new GUI you can select a Display Manager, I recommend using `lightdm`. 
+> Tip: After you install, logout and in the login menu or the top right you can select what GUI you want to login with. Whenever you install a new GUI you can select a Display Manager, I recommend using `lightdm`.
 
 --
 
@@ -1382,7 +1439,7 @@ Installed in Ubuntu 12+ by Default (`ubuntu-desktop`)
 ; Install:
 sudo apt-get install xubuntu-desktop
 
-; Remove: 
+; Remove:
 sudo apt-get remove xubuntu-desktop
 ```
 
@@ -1394,7 +1451,7 @@ sudo apt-get remove xubuntu-desktop
 ; Install:
 sudo add-apt-repository ppa:moorkai/cinnamon
 sudo apt-get update && sudo apt-get install cinnamon
-    
+
 ; Remove
 sudo ppa-purge ppa:moorkai/cinnamon
 ```
@@ -1410,12 +1467,12 @@ This has been one of the all time most popular GUI's for Linux ever made, in par
 ; Install:
 sudo apt-get install ubuntu-gnome-desktop    (For legacy gnome use you can use gnome-shell, this install both)
 
-; Remove: 
+; Remove:
 sudo apt-get remove ubuntu-gnome-desktop     (Removes gnome-shell as well)
 ```
 
-> Gnome3 has been my favorite GUI due to how I can customize it. However, for unknown reasons I have issues running only Gnome3 in VMWare Workstation 11. It works fine as a complete install. 
- 
+> Gnome3 has been my favorite GUI due to how I can customize it. However, for unknown reasons I have issues running only Gnome3 in VMWare Workstation 11. It works fine as a complete install.
+
 Noteworthy: Visit [Gnome Shell Extensions](https://extensions.gnome.org/) to customize anything you want. Make sure to use Firefox.
 
 
@@ -1430,8 +1487,8 @@ This is a very popular GUI for people that are used to Windows Desktops.
 sudo add-apt-repository ppa:kubuntu-ppa/backports
 sudo apt-get update && sudo apt-get dist-upgrade
 sudo apt-get install kubuntu-desktop
-    
-; Remove: 
+
+; Remove:
 sudo apt-get remove kubuntu-desktop
 ```
 
@@ -1442,13 +1499,13 @@ sudo apt-get remove kubuntu-desktop
 ```
 ; Install:
 sudo apt-get install lxqt
-; Remove: 
+; Remove:
 sudo apt-get remove lxqt
 ```
 
 ### Pantheon (ElementaryOS)
 
-[**Elementary OS Website**](https://elementary.io/) 
+[**Elementary OS Website**](https://elementary.io/)
 
 For the best stability I use Elementary OS which is based off of Ubuntu.
 
@@ -1458,7 +1515,7 @@ sudo add-apt-repository ppa:elementary-os/stable
 sudo apt-get update
 sudo apt-get install elementary-desktop
 
-; Remove: 
+; Remove:
 sudo apt-get remove elementary-desktop
 ```
 
@@ -1470,7 +1527,7 @@ sudo apt-get remove elementary-desktop
 ; Install:
 sudo apt-get install xfce4
 
-; Remove: 
+; Remove:
 sudo apt-get remove xfce4
 ```
 
@@ -1481,7 +1538,7 @@ sudo apt-get remove xfce4
 Sometimes the system has problems, seldmoly but I'll list things that helped me fix rare occasions.
 
 ### Ubuntu Infinite Login
-When you try to login to Ubuntu and it relogs you back into the login screen, this is an infinite loop. The only way I was able to fix it depsite all the guides was combining a few of these together for Ubuntu 16.04. 
+When you try to login to Ubuntu and it relogs you back into the login screen, this is an infinite loop. The only way I was able to fix it depsite all the guides was combining a few of these together for Ubuntu 16.04.
 
 If you are using Gnome as I do, I would jump down to the **Apt Auto Remove Problem** in the list.
 
@@ -1520,8 +1577,8 @@ Next, Login as your user who must be able to run `sudo`.
     - After the Above Try: `sudo apt-get autoremove gnome-software && sudo apt-get install gnome-software`
     - I was able to get Gnome-Classic working but not Gnome.
 - **How to Ensure it Works**
-  - You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.    
-    
+  - You might be able to login after one of the steps above if you don't reboot. However, to be certain, you want to reboot to ensure it is fixed, otherwise you'll be doing this over and over.
+
 # Linux Facts
 ***
 [(Back to Top)](#table-of-contents)
