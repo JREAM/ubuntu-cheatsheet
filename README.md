@@ -612,6 +612,9 @@ free -g (in gigabytes)
 ps -ef | more       (current running processes)
 ps -efH | more      (current running processes in a tree)
 
+netstat -tulpn | grep :80 (find process by port)
+netstat -tulpn (get all processes by port)
+
 ps -ef | grep vim   (find vim process id)
 kill -9 <id>        (no brackets)
 ```
