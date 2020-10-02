@@ -282,15 +282,20 @@ these steps:
 [(Back to Top)](#table-of-contents)
 
 
-| Command                                    | Description                     |
-|--------------------------------------------|---------------------------------|
-| passwd                                     | change logged in users password |
-| su - username                              | switch users                    |
-| sudo su                                    | switch to root                  |
-| useradd -m -s /bin/bash username           | Create User                     |
-| usermod -a -G existing_group existing_user | Add User to Group               |
-| who                                        | show all logged in users        |
-| whoami                                     | show which user you are         |
+| Command                                    | Description                          |
+|--------------------------------------------|--------------------------------------|
+| passwd                                     | change logged in users password      |
+| su - username                              | switch users                         |
+| sudo su                                    | switch to root                       |
+| useradd -m -s /bin/bash username           | Create User                          |
+| userdel -r username                        | Delete User                          |
+| usermod -a -G existing_group existing_user | Add User to Group                    |
+| who                                        | show all logged in users             |
+| whoami                                     | show which user you are              |
+| last                                       | show a list of last logged in users  |
+| last username                              | show a logged in information of user |
+| cat /etc/passwd                            | check all user accounts information, about user ID, group ID, home directory, shell ... |
+| cat /etc/shadow                            | check user's actual password in encrypted format and other passwords related information such as user name, last password change date, password expiration values ... |
 
 # Groups
 ***
